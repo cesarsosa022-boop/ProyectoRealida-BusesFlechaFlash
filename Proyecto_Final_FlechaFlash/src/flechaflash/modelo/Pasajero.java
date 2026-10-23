@@ -27,6 +27,14 @@ public class Pasajero {
         this.estado = estado;
     }
 
+    public int getIdPasajero() {
+        return idPasajero;
+    }
+
+    public void setIdPasajero(int idPasajero) {
+        this.idPasajero = idPasajero;
+    }
+
     public String getDni() {
         return dni;
     }
