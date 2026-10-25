@@ -5,19 +5,19 @@ import java.util.Objects;
 
 public class Lugar {
     private int idLugar;
-    private Colectivo colectivo;
+//    private Colectivo colectivo;
     private int numeroAsiento;
     private boolean estado;
 
     public Lugar() {
     }
 
-    public Lugar(int idLugar, Colectivo colectivo, int numeroAsiento, boolean estado) {
-        this.idLugar = idLugar;
-        this.colectivo = colectivo;
-        this.numeroAsiento = numeroAsiento;
-        this.estado = estado;
-    }
+//    public Lugar(int idLugar, Colectivo colectivo, int numeroAsiento, boolean estado) {
+//        this.idLugar = idLugar;
+//        this.colectivo = colectivo;
+//        this.numeroAsiento = numeroAsiento;
+//        this.estado = estado;
+//    }
 
     public int getIdLugar() {
         return idLugar;
@@ -27,13 +27,13 @@ public class Lugar {
         this.idLugar = idLugar;
     }
 
-    public Colectivo getColectivo() {
-        return colectivo;
-    }
+//    public Colectivo getColectivo() {
+//        return colectivo;
+//    }
 
-    public void setColectivo(Colectivo colectivo) {
-        this.colectivo = colectivo;
-    }
+//    public void setColectivo(Colectivo colectivo) {
+//        this.colectivo = colectivo;
+//    }
 
     public int getNumeroAsiento() {
         return numeroAsiento;
@@ -51,10 +51,10 @@ public class Lugar {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "Lugar{" + "idLugar=" + idLugar + ", colectivo=" + colectivo + ", numeroAsiento=" + numeroAsiento + ", estado=" + (estado ? "Disponible" : "No Disponible")+ '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Lugar{" + "idLugar=" + idLugar + ", colectivo=" + colectivo + ", numeroAsiento=" + numeroAsiento + ", estado=" + (estado ? "Disponible" : "No Disponible")+ '}';
+//    }
 
     @Override
     public boolean equals(Object obj) {
