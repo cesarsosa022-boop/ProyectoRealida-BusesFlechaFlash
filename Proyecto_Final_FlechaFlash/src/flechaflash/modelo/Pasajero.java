@@ -17,6 +17,17 @@ public class Pasajero {
     private String telefono;
     private boolean estado;
 
+    public Pasajero() {}
+
+    public Pasajero(String dni, String nombre, String apellido, String correo, String telefono, boolean estado) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.estado = estado;
+    }
+
     public Pasajero(int idPasajero, String dni, String nombre, String apellido, String correo, String telefono, boolean estado) {
         this.idPasajero = idPasajero;
         this.dni = dni;
@@ -27,65 +38,30 @@ public class Pasajero {
         this.estado = estado;
     }
 
-    public int getIdPasajero() {
-        return idPasajero;
-    }
+    // Getters y Setters
+    public int getIdPasajero() { return idPasajero; }
+    public void setIdPasajero(int idPasajero) { this.idPasajero = idPasajero; }
 
-    public void setIdPasajero(int idPasajero) {
-        this.idPasajero = idPasajero;
-    }
+    public String getDni() { return dni; }
+    public void setDni(String dni) { this.dni = dni; }
 
-    public String getDni() {
-        return dni;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
+    public String getApellido() { return apellido; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+    public boolean isEstado() { return estado; }
+    public void setEstado(boolean estado) { this.estado = estado; }
 
     @Override
     public String toString() {
-        return "Pasajero{" + "idPasajero=" + idPasajero + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", telefono=" + telefono + ", estado=" + estado + '}';
+        return idPasajero + " - " + apellido + " " + nombre + " (DNI: " + dni + ")";
     }
-    
 }
