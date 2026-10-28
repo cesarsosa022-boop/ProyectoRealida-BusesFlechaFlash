@@ -42,7 +42,7 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         JBeliminar = new javax.swing.JButton();
         JBlimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFtelefono = new javax.swing.JTextField();
 
         jLabel1.setText("ID:");
 
@@ -76,23 +76,27 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         JBbuscar.addActionListener(this::JBbuscarActionPerformed);
 
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(this::jBguardarActionPerformed);
 
         JBmodificar.setText("Modificar");
+        JBmodificar.addActionListener(this::JBmodificarActionPerformed);
 
         JBeliminar.setText("Eliminar");
+        JBeliminar.addActionListener(this::JBeliminarActionPerformed);
 
         JBlimpiar.setText("Limpiar");
+        JBlimpiar.addActionListener(this::JBlimpiarActionPerformed);
 
         jLabel7.setText("Telefono:");
 
-        jTextField1.setText("Inserte su Numero Telefonico");
+        jTFtelefono.setText("textoTelefono");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(238, Short.MAX_VALUE)
                 .addComponent(jBguardar)
                 .addGap(18, 18, 18)
                 .addComponent(JBmodificar)
@@ -116,14 +120,14 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFcorreo)
-                            .addComponent(jTFapellido, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                            .addComponent(jTFapellido)
                             .addComponent(jTFnombre)
                             .addComponent(jTFdni)
                             .addComponent(jTFid)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCBestado)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField1))))
+                            .addComponent(jTFtelefono))))
                 .addGap(18, 18, 18)
                 .addComponent(JBbuscar)
                 .addGap(14, 14, 14))
@@ -156,12 +160,12 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jCBestado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBguardar)
                     .addComponent(JBmodificar)
@@ -190,9 +194,104 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFapellidoActionPerformed
 
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
-        // TODO add your handling code here:
+
+        try {
+        int id = Integer.parseInt(jTFid.getText());
+        Pasajero pasajero = pasajeroData.buscarPasajero(id);
+
+        if (pasajero != null) {
+            jTFdni.setText(pasajero.getDni());
+            jTFnombre.setText(pasajero.getNombre());
+            jTFapellido.setText(pasajero.getApellido());
+            jTFcorreo.setText(pasajero.getCorreo());
+            jTFtelefono.setText(pasajero.getTelefono());
+            jCBestado.setSelected(pasajero.isEstado());
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontro ningun pasajero con el ID especificado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un ID numerico valido.");
+    }
     }//GEN-LAST:event_JBbuscarActionPerformed
 
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+
+        try {
+        String dni = jTFdni.getText();
+        String nombre = jTFnombre.getText();
+        String apellido = jTFapellido.getText();
+        String correo = jTFcorreo.getText();
+        String telefono = jTFtelefono.getText();
+        boolean estado = jCBestado.isSelected();
+
+        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete DNI, Nombre y Apellido.");
+            return;
+        }
+
+        Pasajero pasajero = new Pasajero(dni, nombre, apellido, correo, telefono, estado);
+        pasajeroData.guardarPasajero(pasajero);
+        
+        JOptionPane.showMessageDialog(this, "Pasajero guardado correctamente");
+        limpiarTexto();
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al guardar: " + e.getMessage());
+      }
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void JBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarActionPerformed
+        try {
+        int id = Integer.parseInt(jTFid.getText());
+        String dni = jTFdni.getText();
+        String nombre = jTFnombre.getText();
+        String apellido = jTFapellido.getText();
+        String correo = jTFcorreo.getText();
+        String telefono = jTFtelefono.getText();
+        boolean estado = jCBestado.isSelected();
+
+        Pasajero pasajero = new Pasajero(id, dni, nombre, apellido, correo, telefono, estado);
+        pasajeroData.modificarPasajero(pasajero);
+        
+        JOptionPane.showMessageDialog(this, "Pasajero modificado correctamente");
+        limpiarTexto();
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un ID numerico valido para modificar.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al modificar: " + e.getMessage());
+      }
+    }//GEN-LAST:event_JBmodificarActionPerformed
+
+    private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
+        try {
+        int id = Integer.parseInt(jTFid.getText());
+        
+        pasajeroData.bajaLogicaPasajero(id); 
+        
+        JOptionPane.showMessageDialog(this, "Pasajero eliminado correctamente");
+        limpiarTexto();
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un ID numerico valido para eliminar.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar: " + e.getMessage());
+      }
+    }//GEN-LAST:event_JBeliminarActionPerformed
+
+    private void JBlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiarActionPerformed
+        limpiarTexto();
+    }//GEN-LAST:event_JBlimpiarActionPerformed
+
+    private void limpiarTexto() {
+        jTFid.setText("");
+        jTFdni.setText("");
+        jTFnombre.setText("");
+        jTFapellido.setText("");
+        jTFcorreo.setText("");
+        jTFtelefono.setText("");
+        jCBestado.setSelected(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscar;
     private javax.swing.JButton JBeliminar;
@@ -212,6 +311,6 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFdni;
     private javax.swing.JTextField jTFid;
     private javax.swing.JTextField jTFnombre;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFtelefono;
     // End of variables declaration//GEN-END:variables
 }
