@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2026 a las 23:56:22
+-- Tiempo de generación: 03-11-2026 a las 22:43:13
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -78,7 +78,7 @@ CREATE TABLE `pasajes` (
   `idPasaje` int(11) NOT NULL,
   `idPasajero` int(11) NOT NULL,
   `idLugar` int(11) NOT NULL,
-  `idRuta` int(11) NOT NULL,
+  `idViaje` int(11) NOT NULL,
   `fechaVenta` date NOT NULL,
   `horaVenta` time NOT NULL,
   `precio` decimal(10,2) NOT NULL,
@@ -88,11 +88,11 @@ CREATE TABLE `pasajes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rutas`
+-- Estructura de tabla para la tabla `viaje`
 --
 
-CREATE TABLE `rutas` (
-  `idRuta` int(11) NOT NULL,
+CREATE TABLE `viaje` (
+  `idViaje` int(11) NOT NULL,
   `origen` varchar(100) NOT NULL,
   `destino` varchar(100) NOT NULL,
   `horaSalida` time NOT NULL,
@@ -135,13 +135,13 @@ ALTER TABLE `pasajes`
   ADD PRIMARY KEY (`idPasaje`),
   ADD KEY `idPasajero` (`idPasajero`),
   ADD KEY `idLugar` (`idLugar`),
-  ADD KEY `idRuta` (`idRuta`);
+  ADD KEY `idViaje` (`idViaje`);
 
 --
--- Indices de la tabla `rutas`
+-- Indices de la tabla `viaje`
 --
-ALTER TABLE `rutas`
-  ADD PRIMARY KEY (`idRuta`),
+ALTER TABLE `viaje`
+  ADD PRIMARY KEY (`idViaje`),
   ADD KEY `idColectivo` (`idColectivo`);
 
 --
@@ -173,10 +173,10 @@ ALTER TABLE `pasajes`
   MODIFY `idPasaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `rutas`
+-- AUTO_INCREMENT de la tabla `viaje`
 --
-ALTER TABLE `rutas`
-  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `viaje`
+  MODIFY `idViaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -194,13 +194,13 @@ ALTER TABLE `lugares`
 ALTER TABLE `pasajes`
   ADD CONSTRAINT `pasajes_ibfk_1` FOREIGN KEY (`idPasajero`) REFERENCES `pasajeros` (`idPasajero`),
   ADD CONSTRAINT `pasajes_ibfk_2` FOREIGN KEY (`idLugar`) REFERENCES `lugares` (`idLugar`),
-  ADD CONSTRAINT `pasajes_ibfk_3` FOREIGN KEY (`idRuta`) REFERENCES `rutas` (`idRuta`);
+  ADD CONSTRAINT `pasajes_ibfk_3` FOREIGN KEY (`idViaje`) REFERENCES `viaje` (`idViaje`);
 
 --
--- Filtros para la tabla `rutas`
+-- Filtros para la tabla `viaje`
 --
-ALTER TABLE `rutas`
-  ADD CONSTRAINT `rutas_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivos` (`idColectivo`);
+ALTER TABLE `viaje`
+  ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivos` (`idColectivo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
