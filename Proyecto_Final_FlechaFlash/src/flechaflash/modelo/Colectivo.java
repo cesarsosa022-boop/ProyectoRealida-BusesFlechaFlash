@@ -4,7 +4,6 @@
  */
 package flechaflash.modelo;
 
-import java.time.Year;
 import java.util.Objects;
 
 /**
@@ -15,13 +14,25 @@ public class Colectivo {
     private int idColectivo;
     private String matricula;
     private String marca;
-    private Year modelo;
-    private Lugar capacidad;
+    private String modelo;
+    private int capacidad;
     private String chofer;
     private boolean estado;
 
-    public Colectivo(int idColectivo, String matricula, String marca, Year modelo, Lugar capacidad, String chofer, boolean estado) {
+    public Colectivo() {
+    }
+
+    public Colectivo(int idColectivo, String matricula, String marca, String modelo, int capacidad, String chofer, boolean estado) {
         this.idColectivo = idColectivo;
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.capacidad = capacidad;
+        this.chofer = chofer;
+        this.estado = estado;
+    }
+
+    public Colectivo(String matricula, String marca, String modelo, int capacidad, String chofer, boolean estado) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -54,19 +65,19 @@ public class Colectivo {
         this.marca = marca;
     }
 
-    public Year getModelo() {
+    public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(Year modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public Lugar getCapacidad() {
+    public int getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(Lugar capacidad) {
+    public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
 
@@ -88,7 +99,7 @@ public class Colectivo {
 
     @Override
     public String toString() {
-        return "Colectivo{" + "idColectivo=" + idColectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", chofer=" + chofer + ", estado=" + estado + '}';
+        return marca + " " + modelo + " (Mat: " + matricula + " - Chofer: " + chofer + ")";
     }
 
     @Override
@@ -111,12 +122,6 @@ public class Colectivo {
             return false;
         }
         final Colectivo other = (Colectivo) obj;
-        if (this.idColectivo != other.idColectivo) {
-            return false;
-        }
-        return Objects.equals(this.matricula, other.matricula);
+        return this.idColectivo == other.idColectivo && Objects.equals(this.matricula, other.matricula);
     }
-    
-    
-    
 }
