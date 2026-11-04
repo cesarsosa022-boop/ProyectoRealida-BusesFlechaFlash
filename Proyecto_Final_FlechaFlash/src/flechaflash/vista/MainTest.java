@@ -4,8 +4,13 @@
  */
 package flechaflash.vista;
 
+import flechaflash.modelo.Colectivo;
 import flechaflash.modelo.Pasajero;
+import flechaflash.modelo.Viaje;
+import flechaflash.persistencia.ColectivoData;
 import flechaflash.persistencia.PasajeroData;
+import flechaflash.persistencia.ViajeData;
+import java.time.LocalTime;
 import java.util.List;
 
 public class MainTest {
@@ -93,13 +98,81 @@ public class MainTest {
         pasData.borrarPasajero(pas3.getIdPasajero()); // Elimina a Lucas Gómez de la BD
         System.out.println("Pasajeros activos tras eliminar definitivamente al ID " + pas3.getIdPasajero() + ":");
         listarYMostrar(pasData);
+    
+
+    // =====================================================================
+        // 4. PRUEBAS PARA VIAJE / VIAJEDATA (Implementación Nueva)
+        // =====================================================================
+        System.out.println("\n=================================================");
+        System.out.println("=== 8. PRUEBAS DE VIAJES Y COLECTIVOS EN CONSOLA ===");
+        System.out.println("=================================================");
+
+        ColectivoData colData = new ColectivoData();
+        ViajeData viajeData = new ViajeData();
+
+        // Verificar o buscar un colectivo previo para asociarlo al viaje
+        Colectivo colectivoPrueba = colData.buscarColectivo(1);
+        if (colectivoPrueba == null) {
+            colectivoPrueba = new Colectivo("AA123BB", "Mercedes Benz", "Marcopolo", 40, "Juan Perez", true);
+            colData.guardarColectivo(colectivoPrueba);
+            System.out.println("Colectivo de prueba creado con ID: " + colectivoPrueba.getIdColectivo());
+        } else {
+            System.out.println("Se reutiliza el colectivo existente con ID: " + colectivoPrueba.getIdColectivo());
+        }
+
+        // Inserción de Viajes
+        System.out.println("\n=== 9. INSERTANDO VIAJES DE PRUEBA ===");
+        Viaje viaje1 = new Viaje("San Luis", "Mendoza", LocalTime.of(8, 0), LocalTime.of(12, 30), colectivoPrueba, 15000.00, true);
+        Viaje viaje2 = new Viaje("San Luis", "Córdoba", LocalTime.of(14, 0), LocalTime.of(18, 0), colectivoPrueba, 18000.00, true);
+
+        viajeData.guardarViaje(viaje1);
+        viajeData.guardarViaje(viaje2);
+
+        // Listar Viajes
+        System.out.println("\n=== 10. LISTADO DE VIAJES REGISTRADOS ===");
+        listarYMostrarViajes(viajeData);
+
+        // Pruebas opcionales de Viaje
+        System.out.println("\n=== 11. PRUEBA OPCIONAL: BUSCAR VIAJE ===");
+        Viaje viajeBuscado = viajeData.buscarViaje(viaje1.getIdViaje());
+        if (viajeBuscado != null) {
+            System.out.println("Viaje encontrado por ID (" + viaje1.getIdViaje() + "): " + viajeBuscado);
+        }
+
+        System.out.println("\n=== 12. PRUEBA OPCIONAL: ACTUALIZAR VIAJE ===");
+        if (viajeBuscado != null) {
+            viajeBuscado.setPrecio(17500.00);
+            viajeData.modificarViaje(viajeBuscado);
+            System.out.println("Precio del viaje actualizado a $17500.00");
+        }
+
+        System.out.println("\n=== 13. PRUEBA OPCIONAL: BAJA LOGICA DE VIAJE ===");
+        viajeData.bajaLogicaViaje(viaje2.getIdViaje());
+        System.out.println("Viajes tras la baja logica del ID " + viaje2.getIdViaje() + ":");
+        listarYMostrarViajes(viajeData);
+
+        System.out.println("\n=== 14. PRUEBA OPCIONAL: ALTA LOGICA DE VIAJE ===");
+        viajeData.altaLogicaViaje(viaje2.getIdViaje());
+        System.out.println("Viajes tras la alta logica del ID " + viaje2.getIdViaje() + ":");
+        listarYMostrarViajes(viajeData);
+
+        System.out.println("\n=== 15. PRUEBA OPCIONAL: BORRAR VIAJE (BAJA FISICA) ===");
+        // viajeData.borrarViaje(viaje2.getIdViaje());
     }
 
-    // Método auxiliar para no repetir el bucle de impresión en consola
+    // Método auxiliar para no repetir el bucle de impresión en consola de pasajeros
     private static void listarYMostrar(PasajeroData pasData) {
         List<Pasajero> lista = pasData.listarPasajeros();
         for (Pasajero p : lista) {
             System.out.println(p);
+        }
+    }
+
+    // Método auxiliar para listar viajes
+    private static void listarYMostrarViajes(ViajeData viajeData) {
+        List<Viaje> lista = viajeData.listarViajes();
+        for (Viaje v : lista) {
+            System.out.println(v);
         }
     }
 }
