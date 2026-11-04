@@ -1,11 +1,13 @@
 
 package flechaflash.modelo;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 public class Viaje {
     private int idViaje;
     private String origen;
     private String destino;
+    private LocalDate fechaViaje;
     private LocalTime horaLlegada;
     private LocalTime horaSalida;
     private Colectivo colectivo;
@@ -15,20 +17,11 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Viaje(int idViaje, String origen, String destino, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
+    public Viaje(int idViaje, String origen, String destino, LocalDate fechaViaje, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
         this.idViaje = idViaje;
         this.origen = origen;
         this.destino = destino;
-        this.horaLlegada = horaLlegada;
-        this.horaSalida = horaSalida;
-        this.colectivo = colectivo;
-        this.precio = precio;
-        this.estado = estado;
-    }
-
-    public Viaje(String origen, String destino, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
-        this.origen = origen;
-        this.destino = destino;
+        this.fechaViaje = fechaViaje;
         this.horaLlegada = horaLlegada;
         this.horaSalida = horaSalida;
         this.colectivo = colectivo;

@@ -18,7 +18,8 @@ public class PasajeroData {
     }
 
     public void guardarPasajero(Pasajero pasajero) {
-        String sql = "INSERT INTO pasajeros (dni, nombre, apellido, correo, telefono, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pasajeros (dni, nombre, apellido, correo, telefono, estado)"
+                + " VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, pasajero.getDni());
