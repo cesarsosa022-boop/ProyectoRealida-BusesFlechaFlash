@@ -3,14 +3,13 @@ package flechaflash.modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
-
 public class Viaje {
     private int idViaje;
     private String origen;
     private String destino;
     private LocalDate fechaViaje;
-    private LocalTime horaSalida;
     private LocalTime horaLlegada;
+    private LocalTime horaSalida;
     private Colectivo colectivo;
     private double precio;
     private boolean estado;
@@ -18,24 +17,13 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Viaje(int idViaje, String origen, String destino, LocalDate fechaViaje, LocalTime horaSalida, LocalTime horaLlegada, Colectivo colectivo, double precio, boolean estado) {
+    public Viaje(int idViaje, String origen, String destino, LocalDate fechaViaje, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
         this.idViaje = idViaje;
         this.origen = origen;
         this.destino = destino;
         this.fechaViaje = fechaViaje;
-        this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
-        this.colectivo = colectivo;
-        this.precio = precio;
-        this.estado = estado;
-    }
-
-    public Viaje(String origen, String destino, LocalDate fechaViaje, LocalTime horaSalida, LocalTime horaLlegada, Colectivo colectivo, double precio, boolean estado) {
-        this.origen = origen;
-        this.destino = destino;
-        this.fechaViaje = fechaViaje;
         this.horaSalida = horaSalida;
-        this.horaLlegada = horaLlegada;
         this.colectivo = colectivo;
         this.precio = precio;
         this.estado = estado;
@@ -65,12 +53,12 @@ public class Viaje {
         this.destino = destino;
     }
 
-    public LocalDate getFechaViaje() {
-        return fechaViaje;
+    public LocalTime getHoraLlegada() {
+        return horaLlegada;
     }
 
-    public void setFechaViaje(LocalDate fechaViaje) {
-        this.fechaViaje = fechaViaje;
+    public void setHoraLlegada(LocalTime horaLlegada) {
+        this.horaLlegada = horaLlegada;
     }
 
     public LocalTime getHoraSalida() {
@@ -79,14 +67,6 @@ public class Viaje {
 
     public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
-    }
-
-    public LocalTime getHoraLlegada() {
-        return horaLlegada;
-    }
-
-    public void setHoraLlegada(LocalTime horaLlegada) {
-        this.horaLlegada = horaLlegada;
     }
 
     public Colectivo getColectivo() {
@@ -115,10 +95,9 @@ public class Viaje {
 
     @Override
     public String toString() {
-        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + 
-               ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + 
-               ", colectivo=" + (colectivo != null ? colectivo.getMatricula() : "N/A") + 
-               ", precio=" + precio + ", estado=" + estado + '}';
+        return "Viaje{" + "idViaje="+idViaje+", origen="+origen+", destino="+destino+", horaLlegada=" + horaLlegada+
+                ", horaSalida="+horaSalida+", horaLlegada="+horaLlegada+", colectivo ="+
+                (colectivo != null ? colectivo.getMatricula() : "N/A") + ", precio"+ precio +", estado="+ estado+"}";
     }
 
     @Override
@@ -126,15 +105,20 @@ public class Viaje {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Viaje other = (Viaje) obj;
-        return this.idViaje == other.idViaje;
-    }
+        return this.idViaje == other.idViaje && Objects.equals(this.origen, other.origen);    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idViaje);
+        return Objects.hash(idViaje, origen, destino);
     }
+    
+    
+
 }

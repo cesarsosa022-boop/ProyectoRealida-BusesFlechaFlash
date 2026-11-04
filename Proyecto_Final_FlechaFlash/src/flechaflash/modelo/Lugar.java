@@ -17,11 +17,6 @@ public class Lugar {
         this.estado = estado;
     }
 
-    public Lugar(int numeroAsiento, boolean estado) {
-        this.numeroAsiento = numeroAsiento;
-        this.estado = estado;
-    }
-
     public int getIdLugar() {
         return idLugar;
     }
@@ -29,6 +24,7 @@ public class Lugar {
     public void setIdLugar(int idLugar) {
         this.idLugar = idLugar;
     }
+
 
     public int getNumeroAsiento() {
         return numeroAsiento;
@@ -51,6 +47,8 @@ public class Lugar {
         return "Lugar{" + "idLugar=" + idLugar + ", numeroAsiento=" + numeroAsiento + ", estado=" + estado + '}';
     }
 
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -63,4 +61,6 @@ public class Lugar {
     public int hashCode() {
         return Objects.hashCode(idLugar);
     }
+    
+
 }

@@ -10,7 +10,6 @@ import flechaflash.modelo.Viaje;
 import flechaflash.persistencia.ColectivoData;
 import flechaflash.persistencia.PasajeroData;
 import flechaflash.persistencia.ViajeData;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -123,8 +122,8 @@ public class MainTest {
 
         // Inserción de Viajes
         System.out.println("\n=== 9. INSERTANDO VIAJES DE PRUEBA ===");
-        Viaje viaje1 = new Viaje("San Luis", "Mendoza", LocalDate.now(), LocalTime.of(8, 0), LocalTime.of(22, 30), colectivoPrueba, 15000.00, true);
-        Viaje viaje2 = new Viaje("San Luis", "Córdoba", LocalDate.now(), LocalTime.of(14, 0), LocalTime.of(18, 0), colectivoPrueba, 10000.00, true);
+        Viaje viaje1 = new Viaje("San Luis", "Mendoza", LocalTime.of(8, 0), LocalTime.of(12, 30), colectivoPrueba, 15000.00, true);
+        Viaje viaje2 = new Viaje("San Luis", "Córdoba", LocalTime.of(14, 0), LocalTime.of(18, 0), colectivoPrueba, 18000.00, true);
 
         viajeData.guardarViaje(viaje1);
         viajeData.guardarViaje(viaje2);
