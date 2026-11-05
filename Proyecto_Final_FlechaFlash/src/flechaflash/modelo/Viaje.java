@@ -1,7 +1,7 @@
-
-package flechaflash.modelo;
+import flechaflash.modelo.Colectivo;
 import java.time.LocalTime;
 import java.util.Objects;
+
 public class Viaje {
     private int idViaje;
     private String origen;
@@ -102,30 +102,27 @@ public class Viaje {
 
     @Override
     public String toString() {
-        return "Viaje{" + "idViaje="+idViaje+", origen="+origen+", destino="+destino+", horaLlegada=" + horaLlegada+
-                ", horaSalida="+horaSalida+", horaLlegada="+horaLlegada+", colectivo ="+
-                (colectivo != null ? colectivo.getMatricula() : "N/A") + ", precio"+ precio +", estado="+ estado+"}";
+        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + 
+               ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + 
+               ", colectivo=" + (colectivo != null ? colectivo.getMatricula() : "N/A") + 
+               ", precio=" + precio + ", estado=" + estado + "}";
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Viaje other = (Viaje) obj;
-        return this.idViaje == other.idViaje && Objects.equals(this.origen, other.origen);    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idViaje, origen, destino);
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
     }
-    
-    
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+    final Viaje other = (Viaje) obj;
+    return Objects.equals(this.origen, other.origen) && Objects.equals(this.destino, other.destino);
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(origen, destino);
+}
 
 }
