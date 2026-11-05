@@ -1,3 +1,5 @@
+package flechaflash.modelo;
+
 import flechaflash.modelo.Colectivo;
 import java.time.LocalTime;
 import java.util.Objects;
