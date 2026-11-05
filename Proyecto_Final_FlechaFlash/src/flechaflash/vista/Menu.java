@@ -25,10 +25,12 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuColectivos = new javax.swing.JMenu();
         jMrutas = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMpasajes = new javax.swing.JMenu();
         jMsistema = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -53,6 +55,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenuColectivos);
 
         jMrutas.setText("Rutas");
+
+        jMenuItem2.setText("Gestion Viaje");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        jMrutas.add(jMenuItem2);
+
         jMenuBar1.add(jMrutas);
 
         jMpasajes.setText("Pasajes");
@@ -85,6 +92,20 @@ public class Menu extends javax.swing.JFrame {
         visPasajero.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        VistaViaje vistaViaje = new VistaViaje();
+        jDesktopPane1.add(vistaViaje);
+        vistaViaje.setVisible(true);
+        
+        try {
+            vistaViaje.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -115,6 +136,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuColectivos;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPasajeros;
     private javax.swing.JMenu jMpasajes;
     private javax.swing.JMenu jMrutas;

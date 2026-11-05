@@ -46,6 +46,8 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         jBbajalogica = new javax.swing.JButton();
         jBaltalogica = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("ID:");
 
         jTFid.setText("textoID");
