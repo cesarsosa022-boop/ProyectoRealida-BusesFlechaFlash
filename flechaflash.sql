@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2026 a las 22:43:13
+-- Tiempo de generación: 05-11-2026 a las 03:29:25
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -26,10 +26,10 @@ USE `flechaflash`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `colectivos`
+-- Estructura de tabla para la tabla `colectivo`
 --
 
-CREATE TABLE `colectivos` (
+CREATE TABLE `colectivo` (
   `idColectivo` int(11) NOT NULL,
   `matricula` varchar(20) NOT NULL,
   `marca` varchar(50) NOT NULL,
@@ -107,9 +107,9 @@ CREATE TABLE `viaje` (
 --
 
 --
--- Indices de la tabla `colectivos`
+-- Indices de la tabla `colectivo`
 --
-ALTER TABLE `colectivos`
+ALTER TABLE `colectivo`
   ADD PRIMARY KEY (`idColectivo`),
   ADD UNIQUE KEY `matricula` (`matricula`);
 
@@ -149,9 +149,9 @@ ALTER TABLE `viaje`
 --
 
 --
--- AUTO_INCREMENT de la tabla `colectivos`
+-- AUTO_INCREMENT de la tabla `colectivo`
 --
-ALTER TABLE `colectivos`
+ALTER TABLE `colectivo`
   MODIFY `idColectivo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -186,7 +186,7 @@ ALTER TABLE `viaje`
 -- Filtros para la tabla `lugares`
 --
 ALTER TABLE `lugares`
-  ADD CONSTRAINT `lugares_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivos` (`idColectivo`) ON DELETE CASCADE;
+  ADD CONSTRAINT `lugares_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivo` (`idColectivo`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pasajes`
@@ -200,7 +200,7 @@ ALTER TABLE `pasajes`
 -- Filtros para la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivos` (`idColectivo`);
+  ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivo` (`idColectivo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
