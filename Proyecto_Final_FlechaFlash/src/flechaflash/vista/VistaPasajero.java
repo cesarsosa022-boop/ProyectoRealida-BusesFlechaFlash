@@ -43,6 +43,8 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         JBlimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTFtelefono = new javax.swing.JTextField();
+        jBbajalogica = new javax.swing.JButton();
+        jBaltalogica = new javax.swing.JButton();
 
         jLabel1.setText("ID:");
 
@@ -91,46 +93,57 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
 
         jTFtelefono.setText("textoTelefono");
 
+        jBbajalogica.setText("Baja Lógica");
+        jBbajalogica.addActionListener(this::jBbajalogicaActionPerformed);
+
+        jBaltalogica.setText("Alta Lógica");
+        jBaltalogica.addActionListener(this::jBaltalogicaActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
-                .addComponent(jBguardar)
-                .addGap(18, 18, 18)
-                .addComponent(JBmodificar)
-                .addGap(18, 18, 18)
-                .addComponent(JBeliminar)
-                .addGap(18, 18, 18)
-                .addComponent(JBlimpiar)
-                .addGap(152, 152, 152))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBguardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBmodificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBbajalogica)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBaltalogica)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBeliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBlimpiar)
+                        .addContainerGap(131, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFcorreo)
-                            .addComponent(jTFapellido)
-                            .addComponent(jTFnombre)
-                            .addComponent(jTFdni)
-                            .addComponent(jTFid)
+                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCBestado)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTFtelefono))))
-                .addGap(18, 18, 18)
-                .addComponent(JBbuscar)
-                .addGap(14, 14, 14))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTFcorreo)
+                                    .addComponent(jTFapellido)
+                                    .addComponent(jTFnombre)
+                                    .addComponent(jTFdni)
+                                    .addComponent(jTFid)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCBestado)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jTFtelefono))))
+                        .addGap(18, 18, 18)
+                        .addComponent(JBbuscar)
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +183,9 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
                     .addComponent(jBguardar)
                     .addComponent(JBmodificar)
                     .addComponent(JBeliminar)
-                    .addComponent(JBlimpiar))
+                    .addComponent(JBlimpiar)
+                    .addComponent(jBbajalogica)
+                    .addComponent(jBaltalogica))
                 .addContainerGap())
         );
 
@@ -264,24 +279,52 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBmodificarActionPerformed
 
     private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
-        try {
-        int id = Integer.parseInt(jTFid.getText());
-        
-        pasajeroData.bajaLogicaPasajero(id); 
-        
-        JOptionPane.showMessageDialog(this, "Pasajero eliminado correctamente");
-        limpiarTexto();
-        
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Ingrese un ID numerico valido para eliminar.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al eliminar: " + e.getMessage());
-      }
+       try {
+            int id = Integer.parseInt(jTFid.getText());
+            
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar físicamente este pasajero?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                pasajeroData.borrarPasajero(id);
+                JOptionPane.showMessageDialog(this, "Pasajero borrado físicamente de la base de datos.");
+                limpiarTexto();
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID numérico válido para eliminar.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar: " + e.getMessage());
+        }
     }//GEN-LAST:event_JBeliminarActionPerformed
 
     private void JBlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiarActionPerformed
         limpiarTexto();
     }//GEN-LAST:event_JBlimpiarActionPerformed
+
+    private void jBbajalogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbajalogicaActionPerformed
+        try {
+            int id = Integer.parseInt(jTFid.getText());
+            pasajeroData.bajaLogicaPasajero(id);
+            jCBestado.setSelected(false);
+            JOptionPane.showMessageDialog(this, "Pasajero dado de baja lógica correctamente.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID numérico válido para la baja lógica.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en baja lógica: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jBbajalogicaActionPerformed
+
+    private void jBaltalogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaltalogicaActionPerformed
+       try {
+            int id = Integer.parseInt(jTFid.getText());
+            pasajeroData.altaLogicaPasajero(id);
+            jCBestado.setSelected(true);
+            JOptionPane.showMessageDialog(this, "Pasajero dado de alta lógica correctamente.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID numérico válido para el alta lógica.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en alta lógica: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jBaltalogicaActionPerformed
 
     private void limpiarTexto() {
         jTFid.setText("");
@@ -297,6 +340,8 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JButton JBeliminar;
     private javax.swing.JButton JBlimpiar;
     private javax.swing.JButton JBmodificar;
+    private javax.swing.JButton jBaltalogica;
+    private javax.swing.JButton jBbajalogica;
     private javax.swing.JButton jBguardar;
     private javax.swing.JCheckBox jCBestado;
     private javax.swing.JLabel jLabel1;
