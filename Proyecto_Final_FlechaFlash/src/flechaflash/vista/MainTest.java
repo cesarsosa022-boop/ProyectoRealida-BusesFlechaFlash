@@ -10,6 +10,8 @@ import flechaflash.modelo.Viaje;
 import flechaflash.persistencia.ColectivoData;
 import flechaflash.persistencia.PasajeroData;
 import flechaflash.persistencia.ViajeData;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class MainTest {
         // 5. OPCIONAL: Método BAJA LÓGICA
         // ---------------------------------------------------------------------
         System.out.println("\n=== 5. PRUEBA OPCIONAL: BAJA LOGICA ===");
-        pasData.bajaLogicaPasajero(pas2.getIdPasajero()); // Desactiva a Ana Mendoza (estado = 0)
+        pasData.bajaLogicaPasajero(pas2.getIdPasajero()); // Desactiva al pasajero (estado = 0)
         System.out.println("Pasajeros activos tras la baja logica de ID " + pas2.getIdPasajero() + ":");
         listarYMostrar(pasData);
 
@@ -87,7 +89,7 @@ public class MainTest {
         // 6. OPCIONAL: Método ALTA LÓGICA
         // ---------------------------------------------------------------------
         System.out.println("\n=== 6. PRUEBA OPCIONAL: ALTA LOGICA ===");
-        pasData.altaLogicaPasajero(pas2.getIdPasajero()); // Reactiva a Ana Mendoza (estado = 1)
+        pasData.altaLogicaPasajero(pas2.getIdPasajero()); // Reactiva al pasajero (estado = 1)
         System.out.println("Pasajeros activos tras reactivar (Alta Logica) al ID " + pas2.getIdPasajero() + ":");
         listarYMostrar(pasData);
 
@@ -95,12 +97,12 @@ public class MainTest {
         // 7. OPCIONAL: Método BORRAR (Baja Física)
         // ---------------------------------------------------------------------
         System.out.println("\n=== 7. PRUEBA OPCIONAL: BORRAR PASAJERO (BAJA FISICA) ===");
-        pasData.borrarPasajero(pas3.getIdPasajero()); // Elimina a Lucas Gómez de la BD
+        pasData.borrarPasajero(pas3.getIdPasajero()); // Elimina al pasajero de la BD
         System.out.println("Pasajeros activos tras eliminar definitivamente al ID " + pas3.getIdPasajero() + ":");
         listarYMostrar(pasData);
     
 
-    // =====================================================================
+        // =====================================================================
         // 4. PRUEBAS PARA VIAJE / VIAJEDATA (Implementación Nueva)
         // =====================================================================
         System.out.println("\n=================================================");
@@ -120,10 +122,11 @@ public class MainTest {
             System.out.println("Se reutiliza el colectivo existente con ID: " + colectivoPrueba.getIdColectivo());
         }
 
-        // Inserción de Viajes
+        // Inserción de Viajes usando LocalDateTime combinado con la fecha actual
         System.out.println("\n=== 9. INSERTANDO VIAJES DE PRUEBA ===");
-        Viaje viaje1 = new Viaje("San Luis", "Mendoza", LocalTime.of(8, 0), LocalTime.of(12, 30), colectivoPrueba, 15000.00, true);
-        Viaje viaje2 = new Viaje("San Luis", "Córdoba", LocalTime.of(14, 0), LocalTime.of(18, 0), colectivoPrueba, 18000.00, true);
+        LocalDate hoy = LocalDate.now();
+        Viaje viaje1 = new Viaje("San Luis", "Mendoza", LocalDateTime.of(hoy, LocalTime.of(8, 0)), LocalDateTime.of(hoy, LocalTime.of(12, 30)), colectivoPrueba, 15000.00, true);
+        Viaje viaje2 = new Viaje("San Luis", "Córdoba", LocalDateTime.of(hoy, LocalTime.of(14, 0)), LocalDateTime.of(hoy, LocalTime.of(18, 0)), colectivoPrueba, 18000.00, true);
 
         viajeData.guardarViaje(viaje1);
         viajeData.guardarViaje(viaje2);

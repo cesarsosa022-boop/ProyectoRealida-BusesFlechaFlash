@@ -26,8 +26,8 @@ public class ViajeData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, viaje.getOrigen());
             ps.setString(2, viaje.getDestino());
-            ps.setTime(3, Time.valueOf(viaje.getHoraSalida()));
-            ps.setTime(4, Time.valueOf(viaje.getHoraLlegada()));
+            ps.setTimestamp(3, Timestamp.valueOf(viaje.getFechaHoraSalida()));
+            ps.setTimestamp(4, Timestamp.valueOf(viaje.getFechaHoraLlegada()));
             ps.setInt(5, viaje.getColectivo().getIdColectivo());
             ps.setDouble(6, viaje.getPrecio());
             ps.setBoolean(7, viaje.isEstado());
@@ -56,11 +56,18 @@ public class ViajeData {
                 viaje.setIdViaje(rs.getInt("idViaje"));
                 viaje.setOrigen(rs.getString("origen"));
                 viaje.setDestino(rs.getString("destino"));
-                viaje.setHoraSalida(rs.getTime("horaSalida").toLocalTime());
-                viaje.setHoraLlegada(rs.getTime("horaLlegada").toLocalTime());
+                
+                Timestamp tsSalida = rs.getTimestamp("horaSalida");
+                if (tsSalida != null) {
+                    viaje.setFechaHoraSalida(tsSalida.toLocalDateTime());
+                }
+                
+                Timestamp tsLlegada = rs.getTimestamp("horaLlegada");
+                if (tsLlegada != null) {
+                    viaje.setFechaHoraLlegada(tsLlegada.toLocalDateTime());
+                }
                 
                 int idColectivo = rs.getInt("idColectivo");
-                // Buscamos el colectivo asociado mediante su ID
                 Colectivo colectivo = colectivoData != null ? colectivoData.buscarColectivo(idColectivo) : null;
                 viaje.setColectivo(colectivo);
                 
@@ -85,8 +92,16 @@ public class ViajeData {
                 viaje.setIdViaje(rs.getInt("idViaje"));
                 viaje.setOrigen(rs.getString("origen"));
                 viaje.setDestino(rs.getString("destino"));
-                viaje.setHoraSalida(rs.getTime("horaSalida").toLocalTime());
-                viaje.setHoraLlegada(rs.getTime("horaLlegada").toLocalTime());
+                
+                Timestamp tsSalida = rs.getTimestamp("horaSalida");
+                if (tsSalida != null) {
+                    viaje.setFechaHoraSalida(tsSalida.toLocalDateTime());
+                }
+                
+                Timestamp tsLlegada = rs.getTimestamp("horaLlegada");
+                if (tsLlegada != null) {
+                    viaje.setFechaHoraLlegada(tsLlegada.toLocalDateTime());
+                }
                 
                 int idColectivo = rs.getInt("idColectivo");
                 Colectivo colectivo = colectivoData != null ? colectivoData.buscarColectivo(idColectivo) : null;
@@ -110,8 +125,8 @@ public class ViajeData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, viaje.getOrigen());
             ps.setString(2, viaje.getDestino());
-            ps.setTime(3, Time.valueOf(viaje.getHoraSalida()));
-            ps.setTime(4, Time.valueOf(viaje.getHoraLlegada()));
+            ps.setTimestamp(3, Timestamp.valueOf(viaje.getFechaHoraSalida()));
+            ps.setTimestamp(4, Timestamp.valueOf(viaje.getFechaHoraLlegada()));
             ps.setInt(5, viaje.getColectivo().getIdColectivo());
             ps.setDouble(6, viaje.getPrecio());
             ps.setInt(7, viaje.getIdViaje());

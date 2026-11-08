@@ -1,15 +1,14 @@
 package flechaflash.modelo;
 
-import flechaflash.modelo.Colectivo;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Viaje {
     private int idViaje;
     private String origen;
     private String destino;
-    private LocalTime horaLlegada;
-    private LocalTime horaSalida;
+    private LocalDateTime fechaHoraSalida;
+    private LocalDateTime fechaHoraLlegada;
     private Colectivo colectivo;
     private double precio;
     private boolean estado;
@@ -17,22 +16,22 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Viaje(int idViaje, String origen, String destino, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
+    public Viaje(int idViaje, String origen, String destino, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraLlegada, Colectivo colectivo, double precio, boolean estado) {
         this.idViaje = idViaje;
         this.origen = origen;
         this.destino = destino;
-        this.horaLlegada = horaLlegada;
-        this.horaSalida = horaSalida;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraLlegada = fechaHoraLlegada;
         this.colectivo = colectivo;
         this.precio = precio;
         this.estado = estado;
     }
 
-    public Viaje(String origen, String destino, LocalTime horaLlegada, LocalTime horaSalida, Colectivo colectivo, double precio, boolean estado) {
+    public Viaje(String origen, String destino, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraLlegada, Colectivo colectivo, double precio, boolean estado) {
         this.origen = origen;
         this.destino = destino;
-        this.horaLlegada = horaLlegada;
-        this.horaSalida = horaSalida;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraLlegada = fechaHoraLlegada;
         this.colectivo = colectivo;
         this.precio = precio;
         this.estado = estado;
@@ -62,20 +61,20 @@ public class Viaje {
         this.destino = destino;
     }
 
-    public LocalTime getHoraLlegada() {
-        return horaLlegada;
+    public LocalDateTime getFechaHoraSalida() {
+        return fechaHoraSalida;
     }
 
-    public void setHoraLlegada(LocalTime horaLlegada) {
-        this.horaLlegada = horaLlegada;
+    public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
+        this.fechaHoraSalida = fechaHoraSalida;
     }
 
-    public LocalTime getHoraSalida() {
-        return horaSalida;
+    public LocalDateTime getFechaHoraLlegada() {
+        return fechaHoraLlegada;
     }
 
-    public void setHoraSalida(LocalTime horaSalida) {
-        this.horaSalida = horaSalida;
+    public void setFechaHoraLlegada(LocalDateTime fechaHoraLlegada) {
+        this.fechaHoraLlegada = fechaHoraLlegada;
     }
 
     public Colectivo getColectivo() {
@@ -105,26 +104,25 @@ public class Viaje {
     @Override
     public String toString() {
         return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + 
-               ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + 
+               ", salida=" + fechaHoraSalida + ", llegada=" + fechaHoraLlegada + 
                ", colectivo=" + (colectivo != null ? colectivo.getMatricula() : "N/A") + 
                ", precio=" + precio + ", estado=" + estado + "}";
     }
 
     @Override
-public boolean equals(Object obj) {
-    if (this == obj) {
-        return true;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Viaje other = (Viaje) obj;
+        return Objects.equals(this.origen, other.origen) && Objects.equals(this.destino, other.destino);
     }
-    if (obj == null || getClass() != obj.getClass()) {
-        return false;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(origen, destino);
     }
-    final Viaje other = (Viaje) obj;
-    return Objects.equals(this.origen, other.origen) && Objects.equals(this.destino, other.destino);
-}
-
-@Override
-public int hashCode() {
-    return Objects.hash(origen, destino);
-}
-
 }

@@ -9,6 +9,8 @@ import flechaflash.modelo.Viaje;
 import flechaflash.persistencia.ColectivoData;
 import flechaflash.persistencia.ViajeData;
 import java.awt.Component;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -401,7 +403,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
         try {
             String origen = txtOrigen.getText().trim();
             String destino = txtDestino.getText().trim();
@@ -445,20 +446,22 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 return ;
             }
             
-            // iniciamos las variables para crear colectivo y luego agregar el nuevo viaje
+            // Creamos los LocalDateTime combinando la fecha actual con las horas de los spinners
+            LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
-            LocalTime horaSalida = LocalTime.of(hhSalida,mmSalida);
+            LocalDateTime fechaHoraSalida = LocalDateTime.of(hoy, LocalTime.of(hhSalida, mmSalida));
+            
             int hhLlegada = (int) spHoraLlegada.getValue();
             int mmLlegada = (int) spMinLlegada.getValue();
-            LocalTime horaLlegada = LocalTime.of(hhLlegada, mmLlegada);
+            LocalDateTime fechaHoraLlegada = LocalDateTime.of(hoy, LocalTime.of(hhLlegada, mmLlegada));
+            
             int idColectivo = Integer.parseInt(comboBoxColectivo.getSelectedItem().toString().split(" - ")[0]);
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
             
             // Pasamos todas las comprobaciones asi que ahora guardamos
-            // Cargamos un viaje como dado de alta, luego podra darle de baja si lo desea
-            Viaje nuevoViaje = new Viaje(origen,destino,horaSalida,horaLlegada,colectivo,precio,true);
+            Viaje nuevoViaje = new Viaje(origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, true);
             
             ViajeData viajeData = new ViajeData();
             
@@ -552,7 +555,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAltaLogicaActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        btnBajaLogica.setEnabled(false);
+       btnBajaLogica.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnEditar.setEnabled(false);
@@ -564,7 +567,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         
         ViajeData viajeData = new ViajeData();
         
-        
         // primero completamos los datos en los campos trayendo el viaje desde la base de datos
         Viaje viaje = viajeData.buscarViaje(idViaje);
         Colectivo colectivo = viaje.getColectivo();
@@ -574,10 +576,11 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         txtPrecio.setText(Double.toString(viaje.getPrecio()));
         String cadena = colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula();
         comboBoxColectivo.setSelectedItem(cadena);
-        spHoraSalida.setValue(viaje.getHoraSalida().getHour());
-        spMinSalida.setValue(viaje.getHoraSalida().getMinute());
-        spHoraLlegada.setValue(viaje.getHoraLlegada().getHour());
-        spMinLlegada.setValue(viaje.getHoraLlegada().getMinute());
+        
+        spHoraSalida.setValue(viaje.getFechaHoraSalida().getHour());
+        spMinSalida.setValue(viaje.getFechaHoraSalida().getMinute());
+        spHoraLlegada.setValue(viaje.getFechaHoraLlegada().getHour());
+        spMinLlegada.setValue(viaje.getFechaHoraLlegada().getMinute());
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -628,19 +631,22 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 return ;
             }
             
-            // iniciamos las variables para crear colectivo y luego agregar el nuevo viaje
+            // Creamos los LocalDateTime para actualizar
+            LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
-            LocalTime horaSalida = LocalTime.of(hhSalida,mmSalida);
+            LocalDateTime fechaHoraSalida = LocalDateTime.of(hoy, LocalTime.of(hhSalida, mmSalida));
+            
             int hhLlegada = (int) spHoraLlegada.getValue();
             int mmLlegada = (int) spMinLlegada.getValue();
-            LocalTime horaLlegada = LocalTime.of(hhLlegada, mmLlegada);
+            LocalDateTime fechaHoraLlegada = LocalDateTime.of(hoy, LocalTime.of(hhLlegada, mmLlegada));
+            
             int idColectivo = Integer.parseInt(comboBoxColectivo.getSelectedItem().toString().split(" - ")[0]);
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
             
             // Pasamos todas las comprobaciones asi que ahora actualizamos
-            Viaje nuevoViaje = new Viaje(idViaje,origen,destino,horaSalida,horaLlegada,colectivo,precio,estado);
+            Viaje nuevoViaje = new Viaje(idViaje, origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, estado);
             
             ViajeData viajeData = new ViajeData();
             
@@ -727,8 +733,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 viaje.getIdViaje(),
                 viaje.getOrigen(),
                 viaje.getDestino(),
-                viaje.getHoraSalida(),
-                viaje.getHoraLlegada(),
+                viaje.getFechaHoraSalida(),
+                viaje.getFechaHoraLlegada(),
                 cole,
                 "$" + viaje.getPrecio(),
                 viaje.isEstado()

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2026 a las 03:29:25
+-- Tiempo de generación: 08-11-2026 a las 20:47:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -95,8 +95,8 @@ CREATE TABLE `viaje` (
   `idViaje` int(11) NOT NULL,
   `origen` varchar(100) NOT NULL,
   `destino` varchar(100) NOT NULL,
-  `horaSalida` time NOT NULL,
-  `horaLlegada` time NOT NULL,
+  `horaSalida` datetime DEFAULT NULL,
+  `horaLlegada` datetime DEFAULT NULL,
   `idColectivo` int(11) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `estado` tinyint(1) DEFAULT 1
