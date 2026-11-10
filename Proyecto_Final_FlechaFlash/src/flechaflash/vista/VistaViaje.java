@@ -38,6 +38,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         initComponents();
         cargarCombo();
         cargarCabecera();
+        efectoBotones(panelBotones);
     }
 
     /**
@@ -50,6 +51,13 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel2 = new javax.swing.JPanel();
+        TituloViajes = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableViaje = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableViaje1 = new javax.swing.JTable();
         panelViajes = new javax.swing.JPanel();
         panelBotones = new javax.swing.JPanel();
         btnBajaLogica = new javax.swing.JButton();
@@ -78,63 +86,166 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         spHoraLlegada = new javax.swing.JSpinner();
         lbHoraLlegada = new javax.swing.JLabel();
         comboBoxColectivo = new javax.swing.JComboBox<>();
-        TituloViajes = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableViaje = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(245, 247, 250));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setPreferredSize(new java.awt.Dimension(950, 700));
 
+        jPanel2.setBackground(new java.awt.Color(245, 247, 250));
+
+        TituloViajes.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        TituloViajes.setText("Viajes");
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/viaje.png"))); // NOI18N
+
+        tableViaje.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tableViaje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableViaje.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tableViaje.setFillsViewportHeight(true);
+        tableViaje.setGridColor(new java.awt.Color(209, 213, 219));
+        tableViaje.setRowHeight(30);
+        tableViaje.setSelectionBackground(new java.awt.Color(37, 99, 235));
+        tableViaje.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableViaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableViajeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableViaje);
+
+        tableViaje1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tableViaje1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableViaje1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tableViaje1.setFillsViewportHeight(true);
+        tableViaje1.setGridColor(new java.awt.Color(209, 213, 219));
+        tableViaje1.setRowHeight(30);
+        tableViaje1.setSelectionBackground(new java.awt.Color(37, 99, 235));
+        tableViaje1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableViaje1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableViajeMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableViaje1);
+
+        panelViajes.setBackground(new java.awt.Color(245, 247, 250));
+        panelViajes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 24, 20, 24));
+
+        panelBotones.setBackground(new java.awt.Color(245, 247, 250));
         panelBotones.setLayout(new java.awt.GridLayout(1, 4, 10, 0));
 
+        btnBajaLogica.setBackground(new java.awt.Color(255, 255, 255));
+        btnBajaLogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBajaLogica.setForeground(new java.awt.Color(31, 41, 55));
         btnBajaLogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/bajaLogica.png"))); // NOI18N
         btnBajaLogica.setText("Baja Logica");
+        btnBajaLogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnBajaLogica.setContentAreaFilled(false);
         btnBajaLogica.setEnabled(false);
+        btnBajaLogica.setFocusPainted(false);
         btnBajaLogica.addActionListener(this::btnBajaLogicaActionPerformed);
         panelBotones.add(btnBajaLogica);
 
+        btnListarViajes.setBackground(new java.awt.Color(255, 255, 255));
+        btnListarViajes.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnListarViajes.setForeground(new java.awt.Color(31, 41, 55));
         btnListarViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/portapapeles.png"))); // NOI18N
         btnListarViajes.setText("Listar Viajes");
+        btnListarViajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnListarViajes.setContentAreaFilled(false);
+        btnListarViajes.setFocusPainted(false);
         btnListarViajes.addActionListener(this::btnListarViajesActionPerformed);
         panelBotones.add(btnListarViajes);
 
+        btnAltaLogica.setBackground(new java.awt.Color(255, 255, 255));
+        btnAltaLogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnAltaLogica.setForeground(new java.awt.Color(31, 41, 55));
         btnAltaLogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/altaLogica.png"))); // NOI18N
         btnAltaLogica.setText("Alta Logica");
+        btnAltaLogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnAltaLogica.setContentAreaFilled(false);
         btnAltaLogica.setEnabled(false);
+        btnAltaLogica.setFocusPainted(false);
         btnAltaLogica.addActionListener(this::btnAltaLogicaActionPerformed);
         panelBotones.add(btnAltaLogica);
 
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(31, 41, 55));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setToolTipText("");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnEliminar.setContentAreaFilled(false);
         btnEliminar.setEnabled(false);
+        btnEliminar.setFocusPainted(false);
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
         panelBotones.add(btnEliminar);
 
+        btnGuardar.setBackground(new java.awt.Color(37, 99, 235));
+        btnGuardar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(31, 41, 55));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setFocusPainted(false);
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
         panelBotones.add(btnGuardar);
 
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEditar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(31, 41, 55));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnEditar.setContentAreaFilled(false);
         btnEditar.setEnabled(false);
+        btnEditar.setFocusPainted(false);
         btnEditar.addActionListener(this::btnEditarActionPerformed);
         panelBotones.add(btnEditar);
 
+        btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(31, 41, 55));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/actualizar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        btnActualizar.setContentAreaFilled(false);
         btnActualizar.setEnabled(false);
+        btnActualizar.setFocusPainted(false);
         btnActualizar.addActionListener(this::btnActualizarActionPerformed);
         panelBotones.add(btnActualizar);
 
+        jPanel1.setBackground(new java.awt.Color(245, 247, 250));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
+        spHoraSalida.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         spHoraSalida.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        spHoraSalida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         spHoraSalida.setEditor(new JSpinner.NumberEditor(spHoraSalida, "00"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -144,6 +255,10 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(spHoraSalida, gridBagConstraints);
+
+        txtOrigen.setBackground(new java.awt.Color(255, 255, 255));
+        txtOrigen.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtOrigen.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -153,6 +268,10 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtOrigen, gridBagConstraints);
+
+        txtDestino.setBackground(new java.awt.Color(255, 255, 255));
+        txtDestino.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtDestino.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -163,7 +282,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtDestino, gridBagConstraints);
 
-        lbColectivo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbColectivo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbColectivo.setForeground(new java.awt.Color(31, 41, 55));
         lbColectivo.setText("Colectivo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -172,7 +292,9 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbColectivo, gridBagConstraints);
 
+        spMinLlegada.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         spMinLlegada.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        spMinLlegada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -183,7 +305,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         jPanel1.add(spMinLlegada, gridBagConstraints);
         spMinLlegada.setEditor(new JSpinner.NumberEditor(spMinLlegada, "00"));
 
-        lbHoraSalida.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbHoraSalida.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbHoraSalida.setForeground(new java.awt.Color(31, 41, 55));
         lbHoraSalida.setText("Hora de Salida:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -192,7 +315,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbHoraSalida, gridBagConstraints);
 
-        lbOrigen.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbOrigen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbOrigen.setForeground(new java.awt.Color(31, 41, 55));
         lbOrigen.setText("Origen:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -201,6 +325,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbOrigen, gridBagConstraints);
 
+        jlHoraSalida.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jlHoraSalida.setForeground(new java.awt.Color(31, 41, 55));
         jlHoraSalida.setText("hs:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -209,7 +335,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jlHoraSalida, gridBagConstraints);
 
-        lbPrecio.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbPrecio.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbPrecio.setForeground(new java.awt.Color(31, 41, 55));
         lbPrecio.setText("Precio del viaje:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -217,6 +344,10 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbPrecio, gridBagConstraints);
+
+        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtPrecio.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -226,7 +357,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtPrecio, gridBagConstraints);
 
-        lbDestino.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbDestino.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbDestino.setForeground(new java.awt.Color(31, 41, 55));
         lbDestino.setText("Destino:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -235,6 +367,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbDestino, gridBagConstraints);
 
+        jlHoraLlegada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jlHoraLlegada.setForeground(new java.awt.Color(31, 41, 55));
         jlHoraLlegada.setText("hs:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -243,6 +377,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jlHoraLlegada, gridBagConstraints);
 
+        jlMinLlegada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jlMinLlegada.setForeground(new java.awt.Color(31, 41, 55));
         jlMinLlegada.setText("min:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -251,7 +387,9 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jlMinLlegada, gridBagConstraints);
 
+        spMinSalida.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         spMinSalida.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        spMinSalida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         spMinSalida.setEditor(new JSpinner.NumberEditor(spMinSalida, "00"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -262,6 +400,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(spMinSalida, gridBagConstraints);
 
+        jlMinSalida.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jlMinSalida.setForeground(new java.awt.Color(31, 41, 55));
         jlMinSalida.setText("min:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -270,7 +410,9 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jlMinSalida, gridBagConstraints);
 
+        spHoraLlegada.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         spHoraLlegada.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        spHoraLlegada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         spHoraLlegada.setEditor(new JSpinner.NumberEditor(spHoraLlegada, "00"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -281,7 +423,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(spHoraLlegada, gridBagConstraints);
 
-        lbHoraLlegada.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lbHoraLlegada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbHoraLlegada.setForeground(new java.awt.Color(31, 41, 55));
         lbHoraLlegada.setText("Hora de Llegada:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -290,7 +433,9 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(lbHoraLlegada, gridBagConstraints);
 
+        comboBoxColectivo.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         comboBoxColectivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxColectivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -308,7 +453,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             .addGroup(panelViajesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -318,43 +463,19 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        TituloViajes.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        TituloViajes.setText("Viajes");
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/viaje.png"))); // NOI18N
-
-        tableViaje.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableViaje.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableViajeMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tableViaje);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelViajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelViajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(TituloViajes)
                         .addGap(18, 18, 18)
@@ -363,19 +484,36 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(TituloViajes)))
                 .addGap(10, 10, 10)
                 .addComponent(panelViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -764,6 +902,46 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         }
     }
     
+    private void efectoBotones(java.awt.Container panel) {
+        final java.awt.Color azul = new java.awt.Color(37, 99, 235);
+        final java.awt.Color gris = new java.awt.Color(243, 244, 246);
+
+        for (java.awt.Component c : panel.getComponents()) {
+            if (!(c instanceof javax.swing.JButton)) continue;
+            javax.swing.JButton b = (javax.swing.JButton) c;
+
+            final boolean principal = b.getBackground().equals(azul);
+            final java.awt.Color base       = b.getBackground();
+            final java.awt.Color hover      = principal ? new java.awt.Color(59, 130, 246) : new java.awt.Color(239, 246, 255);
+            final java.awt.Color presionado = principal ? new java.awt.Color(29, 78, 216)  : new java.awt.Color(219, 234, 254);
+            final javax.swing.border.Border bordeNormal = javax.swing.BorderFactory.createCompoundBorder(
+                    b.getBorder(), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            final javax.swing.border.Border bordeHover  = javax.swing.BorderFactory.createLineBorder(azul, 2);
+
+            b.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(hover); b.setBorder(bordeHover); }
+                }
+                @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); }
+                }
+                @Override public void mousePressed(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(presionado);
+                }
+                @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                }
+            });
+
+            // Al habilitar/deshabilitar: gris claro si está deshabilitado
+            b.addPropertyChangeListener("enabled", e -> {
+                b.setBorder(bordeNormal);
+                b.setBackground(b.isEnabled() ? base : gris);
+            });
+
+            if (!b.isEnabled()) b.setBackground(gris);
+        }
+    }   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloViajes;
     private javax.swing.JButton btnActualizar;
@@ -776,7 +954,9 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboBoxColectivo;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlHoraLlegada;
     private javax.swing.JLabel jlHoraSalida;
     private javax.swing.JLabel jlMinLlegada;
@@ -794,6 +974,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner spMinLlegada;
     private javax.swing.JSpinner spMinSalida;
     private javax.swing.JTable tableViaje;
+    private javax.swing.JTable tableViaje1;
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtOrigen;
     private javax.swing.JTextField txtPrecio;

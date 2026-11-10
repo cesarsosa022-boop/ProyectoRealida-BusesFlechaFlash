@@ -13,6 +13,7 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     public VistaPasajero() {
         initComponents();
         pasajeroData = new PasajeroData();
+        efectoBotones(panelBotones);
     }
 
     /**
@@ -23,7 +24,17 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        panelPasajeros = new javax.swing.JPanel();
+        panelBotones = new javax.swing.JPanel();
+        jBguardar = new javax.swing.JButton();
+        JBmodificar = new javax.swing.JButton();
+        JBeliminar = new javax.swing.JButton();
+        JBlimpiar = new javax.swing.JButton();
+        jBbajalogica = new javax.swing.JButton();
+        jBaltalogica = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTFid = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -37,157 +48,313 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         jTFnombre = new javax.swing.JTextField();
         jCBestado = new javax.swing.JCheckBox();
         JBbuscar = new javax.swing.JButton();
-        jBguardar = new javax.swing.JButton();
-        JBmodificar = new javax.swing.JButton();
-        JBeliminar = new javax.swing.JButton();
-        JBlimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTFtelefono = new javax.swing.JTextField();
-        jBbajalogica = new javax.swing.JButton();
-        jBaltalogica = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(245, 247, 250));
         setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setPreferredSize(new java.awt.Dimension(950, 700));
 
-        jLabel1.setText("ID:");
+        panelPasajeros.setBackground(new java.awt.Color(245, 247, 250));
+        panelPasajeros.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 24, 20, 24));
 
-        jTFid.setText("textoID");
-        jTFid.addActionListener(this::jTFidActionPerformed);
+        panelBotones.setBackground(new java.awt.Color(245, 247, 250));
+        panelBotones.setLayout(new java.awt.GridLayout(1, 6, 10, 0));
 
-        jLabel2.setText("DNI:");
-
-        jLabel3.setText("Nombre:");
-
-        jLabel4.setText("Apellido:");
-
-        jLabel5.setText("Correo:");
-
-        jLabel6.setText("Estado:");
-
-        jTFdni.setText("textoDNI");
-        jTFdni.addActionListener(this::jTFdniActionPerformed);
-
-        jTFapellido.setText("textoApellido");
-        jTFapellido.addActionListener(this::jTFapellidoActionPerformed);
-
-        jTFcorreo.setText("textoCorreo");
-
-        jTFnombre.setText("textoNombre");
-        jTFnombre.addActionListener(this::jTFnombreActionPerformed);
-
-        jCBestado.setText("Activo");
-
-        JBbuscar.setText("Buscar");
-        JBbuscar.addActionListener(this::JBbuscarActionPerformed);
-
+        jBguardar.setBackground(new java.awt.Color(37, 99, 235));
+        jBguardar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jBguardar.setForeground(new java.awt.Color(31, 41, 55));
+        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/guardar.png"))); // NOI18N
         jBguardar.setText("Guardar");
+        jBguardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        jBguardar.setContentAreaFilled(false);
+        jBguardar.setFocusPainted(false);
         jBguardar.addActionListener(this::jBguardarActionPerformed);
+        panelBotones.add(jBguardar);
 
+        JBmodificar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBmodificar.setForeground(new java.awt.Color(31, 41, 55));
+        JBmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/editar.png"))); // NOI18N
         JBmodificar.setText("Modificar");
+        JBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBmodificar.setContentAreaFilled(false);
+        JBmodificar.setFocusPainted(false);
         JBmodificar.addActionListener(this::JBmodificarActionPerformed);
+        panelBotones.add(JBmodificar);
 
+        JBeliminar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBeliminar.setForeground(new java.awt.Color(31, 41, 55));
+        JBeliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/eliminar.png"))); // NOI18N
         JBeliminar.setText("Eliminar");
+        JBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBeliminar.setContentAreaFilled(false);
+        JBeliminar.setFocusPainted(false);
         JBeliminar.addActionListener(this::JBeliminarActionPerformed);
+        panelBotones.add(JBeliminar);
 
+        JBlimpiar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBlimpiar.setForeground(new java.awt.Color(31, 41, 55));
+        JBlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/limpiar.png"))); // NOI18N
         JBlimpiar.setText("Limpiar");
+        JBlimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBlimpiar.setContentAreaFilled(false);
+        JBlimpiar.setFocusPainted(false);
         JBlimpiar.addActionListener(this::JBlimpiarActionPerformed);
+        panelBotones.add(JBlimpiar);
 
-        jLabel7.setText("Telefono:");
-
-        jTFtelefono.setText("textoTelefono");
-
+        jBbajalogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jBbajalogica.setForeground(new java.awt.Color(31, 41, 55));
+        jBbajalogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/bajaLogica.png"))); // NOI18N
         jBbajalogica.setText("Baja Lógica");
+        jBbajalogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        jBbajalogica.setContentAreaFilled(false);
+        jBbajalogica.setFocusPainted(false);
         jBbajalogica.addActionListener(this::jBbajalogicaActionPerformed);
+        panelBotones.add(jBbajalogica);
 
+        jBaltalogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jBaltalogica.setForeground(new java.awt.Color(31, 41, 55));
+        jBaltalogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/altaLogica.png"))); // NOI18N
         jBaltalogica.setText("Alta Lógica");
+        jBaltalogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        jBaltalogica.setContentAreaFilled(false);
+        jBaltalogica.setFocusPainted(false);
         jBaltalogica.addActionListener(this::jBaltalogicaActionPerformed);
+        panelBotones.add(jBaltalogica);
+
+        jPanel2.setBackground(new java.awt.Color(245, 247, 250));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel1.setText("ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel1, gridBagConstraints);
+
+        jTFid.setBackground(new java.awt.Color(255, 255, 255));
+        jTFid.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFid.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        jTFid.addActionListener(this::jTFidActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFid, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel2.setText("DNI:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel2, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel3.setText("Nombre:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel3, gridBagConstraints);
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel4.setText("Apellido:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel4, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel5.setText("Correo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel5, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel6.setText("Estado:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel6, gridBagConstraints);
+
+        jTFdni.setBackground(new java.awt.Color(255, 255, 255));
+        jTFdni.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFdni.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        jTFdni.addActionListener(this::jTFdniActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFdni, gridBagConstraints);
+
+        jTFapellido.setBackground(new java.awt.Color(255, 255, 255));
+        jTFapellido.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFapellido.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        jTFapellido.addActionListener(this::jTFapellidoActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFapellido, gridBagConstraints);
+
+        jTFcorreo.setBackground(new java.awt.Color(255, 255, 255));
+        jTFcorreo.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFcorreo.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFcorreo, gridBagConstraints);
+
+        jTFnombre.setBackground(new java.awt.Color(255, 255, 255));
+        jTFnombre.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFnombre.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        jTFnombre.addActionListener(this::jTFnombreActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFnombre, gridBagConstraints);
+
+        jCBestado.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jCBestado.setForeground(new java.awt.Color(31, 41, 55));
+        jCBestado.setText("Activo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jCBestado, gridBagConstraints);
+
+        JBbuscar.setBackground(new java.awt.Color(37, 99, 235));
+        JBbuscar.setForeground(new java.awt.Color(255, 255, 255));
+        JBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/buscar.png"))); // NOI18N
+        JBbuscar.setText("Buscar");
+        JBbuscar.setBorderPainted(false);
+        JBbuscar.addActionListener(this::JBbuscarActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(JBbuscar, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(31, 41, 55));
+        jLabel7.setText("Telefono:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel7, gridBagConstraints);
+
+        jTFtelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jTFtelefono.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTFtelefono.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jTFtelefono, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        jLabel8.setText("Pasajeros");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/pasajero.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelPasajerosLayout = new javax.swing.GroupLayout(panelPasajeros);
+        panelPasajeros.setLayout(panelPasajerosLayout);
+        panelPasajerosLayout.setHorizontalGroup(
+            panelPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPasajerosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelPasajerosLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+        );
+        panelPasajerosLayout.setVerticalGroup(
+            panelPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPasajerosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBguardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBmodificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBbajalogica)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBaltalogica)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBeliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBlimpiar)
-                        .addContainerGap(131, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFcorreo)
-                                    .addComponent(jTFapellido)
-                                    .addComponent(jTFnombre)
-                                    .addComponent(jTFdni)
-                                    .addComponent(jTFid)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCBestado)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTFtelefono))))
-                        .addGap(18, 18, 18)
-                        .addComponent(JBbuscar)
-                        .addGap(14, 14, 14))))
+                .addContainerGap()
+                .addComponent(panelPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JBbuscar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addComponent(jTFdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTFapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTFcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTFtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jCBestado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBguardar)
-                    .addComponent(JBmodificar)
-                    .addComponent(JBeliminar)
-                    .addComponent(JBlimpiar)
-                    .addComponent(jBbajalogica)
-                    .addComponent(jBaltalogica))
+                .addContainerGap()
+                .addComponent(panelPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -337,6 +504,47 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         jTFtelefono.setText("");
         jCBestado.setSelected(true);
     }
+    
+    private void efectoBotones(java.awt.Container panel) {
+        final java.awt.Color azul = new java.awt.Color(37, 99, 235);
+        final java.awt.Color gris = new java.awt.Color(243, 244, 246);
+
+        for (java.awt.Component c : panel.getComponents()) {
+            if (!(c instanceof javax.swing.JButton)) continue;
+            javax.swing.JButton b = (javax.swing.JButton) c;
+
+            final boolean principal = b.getBackground().equals(azul);
+            final java.awt.Color base       = b.getBackground();
+            final java.awt.Color hover      = principal ? new java.awt.Color(59, 130, 246) : new java.awt.Color(239, 246, 255);
+            final java.awt.Color presionado = principal ? new java.awt.Color(29, 78, 216)  : new java.awt.Color(219, 234, 254);
+            final javax.swing.border.Border bordeNormal = javax.swing.BorderFactory.createCompoundBorder(
+                    b.getBorder(), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            final javax.swing.border.Border bordeHover  = javax.swing.BorderFactory.createLineBorder(azul, 2);
+
+            b.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(hover); b.setBorder(bordeHover); }
+                }
+                @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); }
+                }
+                @Override public void mousePressed(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(presionado);
+                }
+                @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                }
+            });
+
+            // Al habilitar/deshabilitar: gris claro si está deshabilitado
+            b.addPropertyChangeListener("enabled", e -> {
+                b.setBorder(bordeNormal);
+                b.setBackground(b.isEnabled() ? base : gris);
+            });
+
+            if (!b.isEnabled()) b.setBackground(gris);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscar;
     private javax.swing.JButton JBeliminar;
@@ -353,11 +561,16 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFapellido;
     private javax.swing.JTextField jTFcorreo;
     private javax.swing.JTextField jTFdni;
     private javax.swing.JTextField jTFid;
     private javax.swing.JTextField jTFnombre;
     private javax.swing.JTextField jTFtelefono;
+    private javax.swing.JPanel panelBotones;
+    private javax.swing.JPanel panelPasajeros;
     // End of variables declaration//GEN-END:variables
 }
