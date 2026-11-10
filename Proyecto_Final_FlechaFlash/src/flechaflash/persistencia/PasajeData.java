@@ -6,8 +6,6 @@ import flechaflash.modelo.Pasaje;
 import flechaflash.modelo.Pasajero;
 import flechaflash.modelo.Viaje;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,4 +176,43 @@ public class PasajeData {
             System.out.println("Error al borrar pasaje: " + ex.getMessage());
         }
     }
+    
+     // Modificar un pasaje existente
+public void modificarPasaje(Pasaje pasaje) {
+    String sql = "UPDATE pasaje SET idPasajero = ?, idLugar = ?, idViaje = ?, fechaVenta = ?, horaVenta = ?, precio = ?, estado = ? WHERE idPasaje = ?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, pasaje.getPasajero().getIdPasajero());
+        ps.setInt(2, pasaje.getLugar().getIdLugar());
+        ps.setInt(3, pasaje.getViaje().getIdViaje());
+        ps.setDate(4, Date.valueOf(pasaje.getFechaVenta()));
+        ps.setTime(5, Time.valueOf(pasaje.getHoraVenta()));
+        ps.setDouble(6, pasaje.getPrecio());
+        ps.setBoolean(7, pasaje.isEstado());
+        ps.setInt(8, pasaje.getIdPasaje());
+        int exito = ps.executeUpdate();
+        if (exito == 1) {
+            System.out.println("-> Pasaje modificado exitosamente.");
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        System.out.println("Error al modificar pasaje: " + ex.getMessage());
+    }
+}
+
+// Alta lógica de un pasaje (reactivar)
+public void altaLogicaPasaje(int idPasaje) {
+    String sql = "UPDATE pasaje SET estado = 1 WHERE idPasaje = ?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPasaje);
+        int exito = ps.executeUpdate();
+        if (exito == 1) {
+            System.out.println("-> Pasaje dado de alta lógica correctamente.");
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        System.out.println("Error al dar de alta el pasaje: " + ex.getMessage());
+    }
+}
 }
