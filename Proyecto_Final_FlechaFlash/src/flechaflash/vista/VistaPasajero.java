@@ -14,6 +14,7 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         initComponents();
         pasajeroData = new PasajeroData();
         efectoBotones(panelBotones);
+        efectoBuscar(JBbuscar);
     }
 
     /**
@@ -270,6 +271,7 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         jPanel2.add(jCBestado, gridBagConstraints);
 
         JBbuscar.setBackground(new java.awt.Color(37, 99, 235));
+        JBbuscar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         JBbuscar.setForeground(new java.awt.Color(255, 255, 255));
         JBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/buscar.png"))); // NOI18N
         JBbuscar.setText("Buscar");
@@ -544,6 +546,41 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
 
             if (!b.isEnabled()) b.setBackground(gris);
         }
+    }
+    
+    private void efectoBuscar(javax.swing.JButton b) {
+        final java.awt.Color base       = b.getBackground();                 // 37, 99, 235
+        final java.awt.Color hover      = new java.awt.Color(59, 130, 246);  // azul más claro
+        final java.awt.Color presionado = new java.awt.Color(29, 78, 216);   // azul más oscuro
+        final java.awt.Color aro        = new java.awt.Color(147, 197, 253); // celeste del borde
+
+        // Borde de 3 px con los mismos insets que el original, así el botón no cambia de tamaño
+        java.awt.Insets ins = b.getInsets();
+        final javax.swing.border.Border bordeNormal = b.getBorder();
+        final javax.swing.border.Border bordeClick = javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createLineBorder(aro, 3),
+                javax.swing.BorderFactory.createEmptyBorder(
+                        Math.max(0, ins.top - 3), Math.max(0, ins.left - 3),
+                        Math.max(0, ins.bottom - 3), Math.max(0, ins.right - 3)));
+
+        b.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) b.setBackground(hover);
+            }
+            @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); b.setBorderPainted(false); }
+            }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) { b.setBackground(presionado); b.setBorder(bordeClick); b.setBorderPainted(true); }
+            }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) {
+                    b.setBorder(bordeNormal);
+                    b.setBorderPainted(false);
+                    b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                }
+            }
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbuscar;

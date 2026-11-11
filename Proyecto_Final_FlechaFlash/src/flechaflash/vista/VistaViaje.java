@@ -56,8 +56,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableViaje = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableViaje1 = new javax.swing.JTable();
         panelViajes = new javax.swing.JPanel();
         panelBotones = new javax.swing.JPanel();
         btnBajaLogica = new javax.swing.JButton();
@@ -125,31 +123,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tableViaje);
-
-        tableViaje1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        tableViaje1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableViaje1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tableViaje1.setFillsViewportHeight(true);
-        tableViaje1.setGridColor(new java.awt.Color(209, 213, 219));
-        tableViaje1.setRowHeight(30);
-        tableViaje1.setSelectionBackground(new java.awt.Color(37, 99, 235));
-        tableViaje1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tableViaje1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableViajeMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tableViaje1);
 
         panelViajes.setBackground(new java.awt.Color(245, 247, 250));
         panelViajes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 24, 20, 24));
@@ -882,7 +855,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     }
     
     private void ajustarColumnas() {
-        tableViaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableViaje.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         for (int col = 0; col < tableViaje.getColumnCount(); col++) {
             TableColumn columna = tableViaje.getColumnModel().getColumn(col);
 
@@ -956,7 +929,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlHoraLlegada;
     private javax.swing.JLabel jlHoraSalida;
     private javax.swing.JLabel jlMinLlegada;
@@ -974,7 +946,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner spMinLlegada;
     private javax.swing.JSpinner spMinSalida;
     private javax.swing.JTable tableViaje;
-    private javax.swing.JTable tableViaje1;
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtOrigen;
     private javax.swing.JTextField txtPrecio;

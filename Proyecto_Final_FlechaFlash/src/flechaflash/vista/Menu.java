@@ -24,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuPasajeros = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuColectivos = new javax.swing.JMenu();
+        menuColectivos = new javax.swing.JMenuItem();
         jMrutas = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMpasajes = new javax.swing.JMenu();
@@ -52,6 +53,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenuPasajeros);
 
         jMenuColectivos.setText("Colectivos");
+
+        menuColectivos.setText("Gestion Colectivos");
+        menuColectivos.addActionListener(this::menuColectivosActionPerformed);
+        jMenuColectivos.add(menuColectivos);
+
         jMenuBar1.add(jMenuColectivos);
 
         jMrutas.setText("Rutas");
@@ -106,6 +112,20 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void menuColectivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuColectivosActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        VistaColectivo vistaColectivo = new VistaColectivo();
+        jDesktopPane1.add(vistaColectivo);
+        vistaColectivo.setVisible(true);
+        
+        try {
+            vistaColectivo.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_menuColectivosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -141,5 +161,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMpasajes;
     private javax.swing.JMenu jMrutas;
     private javax.swing.JMenu jMsistema;
+    private javax.swing.JMenuItem menuColectivos;
     // End of variables declaration//GEN-END:variables
 }
