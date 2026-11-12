@@ -31,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
         jMpasajes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMsistema = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -78,7 +79,12 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMpasajes);
 
-        jMsistema.setText("Sistema");
+        jMsistema.setText("Salir del sistema");
+
+        jMenuItem4.setText("Salir");
+        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+        jMsistema.add(jMenuItem4);
+
         jMenuBar1.add(jMsistema);
 
         setJMenuBar(jMenuBar1);
@@ -155,6 +161,14 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        int respuesta = javax.swing.JOptionPane.showConfirmDialog(this, "¿Seguro que querés salir del sistema?", "Salir",
+        javax.swing.JOptionPane.YES_NO_OPTION);
+        if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,6 +201,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu jMenuPasajeros;
     private javax.swing.JMenu jMpasajes;
     private javax.swing.JMenu jMrutas;
