@@ -28,6 +28,7 @@ public class Menu extends javax.swing.JFrame {
         jMrutas = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMpasajes = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMsistema = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +70,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMrutas);
 
         jMpasajes.setText("Pasajes");
+
+        jMenuItem3.setText("Gestion Pasajes");
+        jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
+        jMpasajes.add(jMenuItem3);
+
         jMenuBar1.add(jMpasajes);
 
         jMsistema.setText("Sistema");
@@ -126,6 +132,20 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuColectivosActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        VistaPasajes vistaPasaje = new VistaPasajes();
+        jDesktopPane1.add(vistaPasaje);
+        vistaPasaje.setVisible(true);
+        
+        try {
+            vistaPasaje.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -157,6 +177,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuColectivos;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jMenuPasajeros;
     private javax.swing.JMenu jMpasajes;
     private javax.swing.JMenu jMrutas;

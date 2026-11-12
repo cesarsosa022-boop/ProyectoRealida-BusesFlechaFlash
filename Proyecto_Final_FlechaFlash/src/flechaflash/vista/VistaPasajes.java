@@ -37,6 +37,8 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         cargarCombos();
         cargarCabecera();
         cargarTabla();
+        efectoBotones(panelBotones);
+        efectoBuscar(JBbuscar);
     }
 
     private void cargarCombos() {
@@ -161,7 +163,7 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
     }
 
     private void ajustarColumnas() {
-        tablePasaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablePasaje.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         for (int col = 0; col < tablePasaje.getColumnCount(); col++) {
             TableColumn columna = tablePasaje.getColumnModel().getColumn(col);
 
@@ -186,9 +188,11 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        panelPasajes = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panelFormulario = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -200,7 +204,7 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         JTFid = new javax.swing.JTextField();
         JBbuscar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        panelBotones = new javax.swing.JPanel();
         JBguardar = new javax.swing.JButton();
         JBmodificar = new javax.swing.JButton();
         JBlistarPasajes = new javax.swing.JButton();
@@ -210,126 +214,240 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         JBlimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePasaje = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(245, 247, 250));
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
+        panelPasajes.setBackground(new java.awt.Color(245, 247, 250));
+        panelPasajes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 24, 20, 24));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(31, 41, 55));
         jLabel1.setText("Venta de Pasajes");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        panelFormulario.setBackground(new java.awt.Color(245, 247, 250));
+        panelFormulario.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(31, 41, 55));
         jLabel2.setText("Pasajero:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(jLabel2, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(31, 41, 55));
         jLabel3.setText("Viaje:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(31, 41, 55));
         jLabel4.setText("Lugar:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(jLabel4, gridBagConstraints);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(31, 41, 55));
         jLabel5.setText("Precio:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(jLabel5, gridBagConstraints);
 
+        comboBoxPasajero.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxPasajero.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         comboBoxPasajero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxPasajero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(comboBoxPasajero, gridBagConstraints);
 
+        comboBoxViaje.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxViaje.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         comboBoxViaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxViaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
         comboBoxViaje.addActionListener(this::comboBoxViajeActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(comboBoxViaje, gridBagConstraints);
 
+        comboBoxLugar.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxLugar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         comboBoxLugar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxLugar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(comboBoxLugar, gridBagConstraints);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtPrecio.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(txtPrecio, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(31, 41, 55));
         jLabel6.setText("Id:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(jLabel6, gridBagConstraints);
 
+        JTFid.setBackground(new java.awt.Color(255, 255, 255));
+        JTFid.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        JTFid.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)), javax.swing.BorderFactory.createEmptyBorder(6, 10, 6, 10)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(JTFid, gridBagConstraints);
+
+        JBbuscar.setBackground(new java.awt.Color(37, 99, 235));
+        JBbuscar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBbuscar.setForeground(new java.awt.Color(255, 255, 255));
+        JBbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/buscar.png"))); // NOI18N
         JBbuscar.setText("Buscar");
+        JBbuscar.setBorderPainted(false);
+        JBbuscar.setFocusPainted(false);
         JBbuscar.addActionListener(this::JBbuscarActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelFormulario.add(JBbuscar, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxLugar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(57, 57, 57))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxPasajero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JTFid))))
-                .addGap(36, 36, 36)
-                .addComponent(JBbuscar)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBbuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap())
-        );
+        panelBotones.setBackground(new java.awt.Color(245, 247, 250));
+        panelBotones.setLayout(new java.awt.GridLayout(1, 7, 10, 0));
 
-        jPanel2.setLayout(new java.awt.GridLayout(1, 4, 10, 0));
-
+        JBguardar.setBackground(new java.awt.Color(255, 255, 255));
+        JBguardar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBguardar.setForeground(new java.awt.Color(31, 41, 55));
+        JBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/guardar.png"))); // NOI18N
         JBguardar.setText("Guardar");
+        JBguardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBguardar.setContentAreaFilled(false);
+        JBguardar.setFocusPainted(false);
         JBguardar.addActionListener(this::JBguardarActionPerformed);
-        jPanel2.add(JBguardar);
+        panelBotones.add(JBguardar);
 
+        JBmodificar.setBackground(new java.awt.Color(255, 255, 255));
+        JBmodificar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBmodificar.setForeground(new java.awt.Color(31, 41, 55));
+        JBmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/editar.png"))); // NOI18N
         JBmodificar.setText("Modificar");
+        JBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBmodificar.setContentAreaFilled(false);
+        JBmodificar.setFocusPainted(false);
         JBmodificar.addActionListener(this::JBmodificarActionPerformed);
-        jPanel2.add(JBmodificar);
+        panelBotones.add(JBmodificar);
 
+        JBlistarPasajes.setBackground(new java.awt.Color(255, 255, 255));
+        JBlistarPasajes.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBlistarPasajes.setForeground(new java.awt.Color(31, 41, 55));
+        JBlistarPasajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/portapapeles.png"))); // NOI18N
         JBlistarPasajes.setText("Listar Pasajes");
+        JBlistarPasajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBlistarPasajes.setContentAreaFilled(false);
+        JBlistarPasajes.setFocusPainted(false);
         JBlistarPasajes.addActionListener(this::JBlistarPasajesActionPerformed);
-        jPanel2.add(JBlistarPasajes);
+        panelBotones.add(JBlistarPasajes);
 
+        JBbajaLogica.setBackground(new java.awt.Color(255, 255, 255));
+        JBbajaLogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBbajaLogica.setForeground(new java.awt.Color(31, 41, 55));
+        JBbajaLogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/bajaLogica.png"))); // NOI18N
         JBbajaLogica.setText("Baja Lógica");
+        JBbajaLogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBbajaLogica.setContentAreaFilled(false);
+        JBbajaLogica.setFocusPainted(false);
         JBbajaLogica.addActionListener(this::JBbajaLogicaActionPerformed);
-        jPanel2.add(JBbajaLogica);
+        panelBotones.add(JBbajaLogica);
 
+        JBaltaLogica.setBackground(new java.awt.Color(255, 255, 255));
+        JBaltaLogica.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBaltaLogica.setForeground(new java.awt.Color(31, 41, 55));
+        JBaltaLogica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/altaLogica.png"))); // NOI18N
         JBaltaLogica.setText("Alta Lógica");
+        JBaltaLogica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBaltaLogica.setContentAreaFilled(false);
+        JBaltaLogica.setFocusPainted(false);
         JBaltaLogica.addActionListener(this::JBaltaLogicaActionPerformed);
-        jPanel2.add(JBaltaLogica);
+        panelBotones.add(JBaltaLogica);
 
+        JBeliminar.setBackground(new java.awt.Color(255, 255, 255));
+        JBeliminar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBeliminar.setForeground(new java.awt.Color(31, 41, 55));
+        JBeliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/eliminar.png"))); // NOI18N
         JBeliminar.setText("Eliminar");
+        JBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBeliminar.setContentAreaFilled(false);
+        JBeliminar.setFocusPainted(false);
         JBeliminar.addActionListener(this::JBeliminarActionPerformed);
-        jPanel2.add(JBeliminar);
+        panelBotones.add(JBeliminar);
 
+        JBlimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        JBlimpiar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        JBlimpiar.setForeground(new java.awt.Color(31, 41, 55));
+        JBlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/limpiar.png"))); // NOI18N
         JBlimpiar.setText("Limpiar");
+        JBlimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        JBlimpiar.setContentAreaFilled(false);
+        JBlimpiar.setFocusPainted(false);
         JBlimpiar.addActionListener(this::JBlimpiarActionPerformed);
-        jPanel2.add(JBlimpiar);
+        panelBotones.add(JBlimpiar);
 
+        tablePasaje.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tablePasaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -341,6 +459,12 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePasaje.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablePasaje.setFillsViewportHeight(true);
+        tablePasaje.setGridColor(new java.awt.Color(209, 213, 219));
+        tablePasaje.setRowHeight(30);
+        tablePasaje.setSelectionBackground(new java.awt.Color(37, 99, 235));
+        tablePasaje.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablePasaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablePasajeMouseClicked(evt);
@@ -348,38 +472,55 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablePasaje);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flechaflash/icon/boleto.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelPasajesLayout = new javax.swing.GroupLayout(panelPasajes);
+        panelPasajes.setLayout(panelPasajesLayout);
+        panelPasajesLayout.setHorizontalGroup(
+            panelPasajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPasajesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPasajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(panelPasajesLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelPasajesLayout.setVerticalGroup(
+            panelPasajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPasajesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPasajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                .addContainerGap()
+                .addComponent(panelPasajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addComponent(panelPasajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -606,7 +747,82 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         limpiarTexto();
     }//GEN-LAST:event_JBlimpiarActionPerformed
 
+    
+    private void efectoBotones(java.awt.Container panel) {
+        final java.awt.Color azul = new java.awt.Color(37, 99, 235);
+        final java.awt.Color gris = new java.awt.Color(243, 244, 246);
 
+        for (java.awt.Component c : panel.getComponents()) {
+            if (!(c instanceof javax.swing.JButton)) continue;
+            javax.swing.JButton b = (javax.swing.JButton) c;
+
+            final boolean principal = b.getBackground().equals(azul);
+            final java.awt.Color base       = b.getBackground();
+            final java.awt.Color hover      = principal ? new java.awt.Color(59, 130, 246) : new java.awt.Color(239, 246, 255);
+            final java.awt.Color presionado = principal ? new java.awt.Color(29, 78, 216)  : new java.awt.Color(219, 234, 254);
+            final javax.swing.border.Border bordeNormal = javax.swing.BorderFactory.createCompoundBorder(
+                    b.getBorder(), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            final javax.swing.border.Border bordeHover  = javax.swing.BorderFactory.createLineBorder(azul, 2);
+
+            b.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(hover); b.setBorder(bordeHover); }
+                }
+                @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); }
+                }
+                @Override public void mousePressed(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(presionado);
+                }
+                @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                }
+            });
+
+            // Al habilitar/deshabilitar: gris claro si está deshabilitado
+            b.addPropertyChangeListener("enabled", e -> {
+                b.setBorder(bordeNormal);
+                b.setBackground(b.isEnabled() ? base : gris);
+            });
+
+            if (!b.isEnabled()) b.setBackground(gris);
+        }
+    }
+    
+    private void efectoBuscar(javax.swing.JButton b) {
+        final java.awt.Color base       = b.getBackground();                 // 37, 99, 235
+        final java.awt.Color hover      = new java.awt.Color(59, 130, 246);  // azul más claro
+        final java.awt.Color presionado = new java.awt.Color(29, 78, 216);   // azul más oscuro
+        final java.awt.Color aro        = new java.awt.Color(147, 197, 253); // celeste del borde
+
+        // Borde de 3 px con los mismos insets que el original, así el botón no cambia de tamaño
+        java.awt.Insets ins = b.getInsets();
+        final javax.swing.border.Border bordeNormal = b.getBorder();
+        final javax.swing.border.Border bordeClick = javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createLineBorder(aro, 3),
+                javax.swing.BorderFactory.createEmptyBorder(
+                        Math.max(0, ins.top - 3), Math.max(0, ins.left - 3),
+                        Math.max(0, ins.bottom - 3), Math.max(0, ins.right - 3)));
+
+        b.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) b.setBackground(hover);
+            }
+            @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); b.setBorderPainted(false); }
+            }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) { b.setBackground(presionado); b.setBorder(bordeClick); b.setBorderPainted(true); }
+            }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+                if (b.isEnabled()) {
+                    b.setBorder(bordeNormal);
+                    b.setBorderPainted(false);
+                    b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                }
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBaltaLogica;
     private javax.swing.JButton JBbajaLogica;
@@ -626,9 +842,11 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelBotones;
+    private javax.swing.JPanel panelFormulario;
+    private javax.swing.JPanel panelPasajes;
     private javax.swing.JTable tablePasaje;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
