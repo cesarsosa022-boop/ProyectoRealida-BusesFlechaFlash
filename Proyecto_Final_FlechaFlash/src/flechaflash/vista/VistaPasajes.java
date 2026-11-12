@@ -221,6 +221,7 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setPreferredSize(new java.awt.Dimension(950, 700));
 
         panelPasajes.setBackground(new java.awt.Color(245, 247, 250));
         panelPasajes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 24, 20, 24));
