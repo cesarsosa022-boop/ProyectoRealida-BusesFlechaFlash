@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2026 a las 20:47:10
+-- Tiempo de generación: 16-11-2026 a las 18:38:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -42,10 +42,10 @@ CREATE TABLE `colectivo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `lugares`
+-- Estructura de tabla para la tabla `lugar`
 --
 
-CREATE TABLE `lugares` (
+CREATE TABLE `lugar` (
   `idLugar` int(11) NOT NULL,
   `idColectivo` int(11) NOT NULL,
   `numeroAsiento` int(11) NOT NULL,
@@ -114,9 +114,9 @@ ALTER TABLE `colectivo`
   ADD UNIQUE KEY `matricula` (`matricula`);
 
 --
--- Indices de la tabla `lugares`
+-- Indices de la tabla `lugar`
 --
-ALTER TABLE `lugares`
+ALTER TABLE `lugar`
   ADD PRIMARY KEY (`idLugar`),
   ADD KEY `idColectivo` (`idColectivo`);
 
@@ -155,9 +155,9 @@ ALTER TABLE `colectivo`
   MODIFY `idColectivo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `lugares`
+-- AUTO_INCREMENT de la tabla `lugar`
 --
-ALTER TABLE `lugares`
+ALTER TABLE `lugar`
   MODIFY `idLugar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -183,17 +183,17 @@ ALTER TABLE `viaje`
 --
 
 --
--- Filtros para la tabla `lugares`
+-- Filtros para la tabla `lugar`
 --
-ALTER TABLE `lugares`
-  ADD CONSTRAINT `lugares_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivo` (`idColectivo`) ON DELETE CASCADE;
+ALTER TABLE `lugar`
+  ADD CONSTRAINT `lugar_ibfk_1` FOREIGN KEY (`idColectivo`) REFERENCES `colectivo` (`idColectivo`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pasajes`
 --
 ALTER TABLE `pasajes`
   ADD CONSTRAINT `pasajes_ibfk_1` FOREIGN KEY (`idPasajero`) REFERENCES `pasajeros` (`idPasajero`),
-  ADD CONSTRAINT `pasajes_ibfk_2` FOREIGN KEY (`idLugar`) REFERENCES `lugares` (`idLugar`),
+  ADD CONSTRAINT `pasajes_ibfk_2` FOREIGN KEY (`idLugar`) REFERENCES `lugar` (`idLugar`),
   ADD CONSTRAINT `pasajes_ibfk_3` FOREIGN KEY (`idViaje`) REFERENCES `viaje` (`idViaje`);
 
 --
