@@ -24,7 +24,7 @@ public class PasajeData {
 
     // Guardar / Vender un pasaje
     public void guardarPasaje(Pasaje pasaje) {
-        String sql = "INSERT INTO pasaje (idPasajero, idLugar, idViaje, fechaVenta, horaVenta, precio, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pasajes (idPasajero, idLugar, idViaje, fechaVenta, horaVenta, precio, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, pasaje.getPasajero().getIdPasajero());
@@ -49,7 +49,7 @@ public class PasajeData {
 
     // Buscar un pasaje por ID
     public Pasaje buscarPasaje(int idPasaje) {
-        String sql = "SELECT * FROM pasaje WHERE idPasaje = ?";
+        String sql = "SELECT * FROM pasajes WHERE idPasaje = ?";
         Pasaje pasaje = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class PasajeData {
     // Listar todos los pasajes
     public List<Pasaje> listarPasajes() {
         List<Pasaje> pasajes = new ArrayList<>();
-        String sql = "SELECT * FROM pasaje";
+        String sql = "SELECT * FROM pasajes";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -120,7 +120,7 @@ public class PasajeData {
     // Listar pasajes emitidos para un viaje específico
     public List<Pasaje> listarPasajesPorViaje(int idViaje) {
         List<Pasaje> pasajes = new ArrayList<>();
-        String sql = "SELECT * FROM pasaje WHERE idViaje = ?";
+        String sql = "SELECT * FROM pasajes WHERE idViaje = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idViaje);
@@ -147,7 +147,7 @@ public class PasajeData {
 
     // Baja lógica de un pasaje (anulación)
     public void bajaLogicaPasaje(int idPasaje) {
-        String sql = "UPDATE pasaje SET estado = 0 WHERE idPasaje = ?";
+        String sql = "UPDATE pasajes SET estado = 0 WHERE idPasaje = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPasaje);
@@ -163,7 +163,7 @@ public class PasajeData {
 
     // Borrado físico de un pasaje
     public void borrarPasaje(int idPasaje) {
-        String sql = "DELETE FROM pasaje WHERE idPasaje = ?";
+        String sql = "DELETE FROM pasajes WHERE idPasaje = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPasaje);
@@ -179,7 +179,7 @@ public class PasajeData {
     
      // Modificar un pasaje existente
 public void modificarPasaje(Pasaje pasaje) {
-    String sql = "UPDATE pasaje SET idPasajero = ?, idLugar = ?, idViaje = ?, fechaVenta = ?, horaVenta = ?, precio = ?, estado = ? WHERE idPasaje = ?";
+    String sql = "UPDATE pasajes SET idPasajero = ?, idLugar = ?, idViaje = ?, fechaVenta = ?, horaVenta = ?, precio = ?, estado = ? WHERE idPasaje = ?";
     try {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, pasaje.getPasajero().getIdPasajero());
@@ -202,7 +202,7 @@ public void modificarPasaje(Pasaje pasaje) {
 
 // Alta lógica de un pasaje (reactivar)
 public void altaLogicaPasaje(int idPasaje) {
-    String sql = "UPDATE pasaje SET estado = 1 WHERE idPasaje = ?";
+    String sql = "UPDATE pasajes SET estado = 1 WHERE idPasaje = ?";
     try {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idPasaje);
