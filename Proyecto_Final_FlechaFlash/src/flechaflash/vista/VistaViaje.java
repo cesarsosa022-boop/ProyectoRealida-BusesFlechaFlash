@@ -519,32 +519,32 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             String origen = txtOrigen.getText().trim();
             String destino = txtDestino.getText().trim();
             String textoPrecio = txtPrecio.getText().trim();
-            double precio = Double.parseDouble(textoPrecio);
 
-            // Comprobacion campo en blanco.
-            if (txtOrigen.getText().isEmpty()) {
+            // Comprobación de campos en blanco ANTES de convertir el precio
+            if (origen.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Origen' no puede estar en blanco.");
                 return;
             }
 
-            if (txtDestino.getText().isEmpty()) {
+            if (destino.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Destino' no puede estar en blanco.");
                 return;
             }
 
-            if (txtPrecio.getText().isEmpty()) {
+            if (textoPrecio.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Precio' no puede estar en blanco.");
                 return;
             }
 
-            // Validaciones de campos bien escritos, si ha seleccionado un colectivo, y si el precio es acorde
+            double precio = Double.parseDouble(textoPrecio);
+
             if (!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
-                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras.");
+                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en Origen.");
                 return;
             }
 
             if (!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
-                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en estino.");
+                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en Destino.");
                 return;
             }
 
@@ -558,7 +558,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 return;
             }
 
-            // Creamos los LocalDateTime combinando la fecha actual con las horas de los spinners
             LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
@@ -572,14 +571,11 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
 
-            // Pasamos todas las comprobaciones asi que ahora guardamos
             Viaje nuevoViaje = new Viaje(origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, true);
-
             ViajeData viajeData = new ViajeData();
 
             List<Viaje> lista = viajeData.listarViajes();
             for (Viaje item : lista) {
-
                 if (nuevoViaje.equals(item)) {
                     JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
                     return;
@@ -587,15 +583,12 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             }
 
             viajeData.guardarViaje(nuevoViaje);
-
             JOptionPane.showMessageDialog(this, "Viaje cargado correctamente!");
 
-            // formateamos los campos
             formatearCampos();
-
             cargarTabla();
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los datos. \nError: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ingrese un precio numérico válido.");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -704,32 +697,31 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             String origen = txtOrigen.getText().trim();
             String destino = txtDestino.getText().trim();
             String textoPrecio = txtPrecio.getText().trim();
-            double precio = Double.parseDouble(textoPrecio);
 
-            // Comprobacion campo en blanco.
-            if (txtOrigen.getText().isEmpty()) {
+            if (origen.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Origen' no puede estar en blanco.");
                 return;
             }
 
-            if (txtDestino.getText().isEmpty()) {
+            if (destino.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Destino' no puede estar en blanco.");
                 return;
             }
 
-            if (txtPrecio.getText().isEmpty()) {
+            if (textoPrecio.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Precio' no puede estar en blanco.");
                 return;
             }
 
-            // Validaciones de campos bien escritos, si ha seleccionado un colectivo, y si el precio es acorde
+            double precio = Double.parseDouble(textoPrecio);
+
             if (!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
-                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras.");
+                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en Origen.");
                 return;
             }
 
             if (!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
-                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en estino.");
+                JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en Destino.");
                 return;
             }
 
@@ -743,7 +735,6 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 return;
             }
 
-            // Creamos los LocalDateTime para actualizar
             LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
@@ -757,14 +748,11 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
 
-            // Pasamos todas las comprobaciones asi que ahora actualizamos
             Viaje nuevoViaje = new Viaje(idViaje, origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, estado);
-
             ViajeData viajeData = new ViajeData();
 
             List<Viaje> lista = viajeData.listarViajes();
             for (Viaje item : lista) {
-
                 if (item.getIdViaje() != nuevoViaje.getIdViaje() && nuevoViaje.equals(item)) {
                     JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
                     return;
@@ -772,16 +760,13 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             }
 
             viajeData.modificarViaje(nuevoViaje);
-
             JOptionPane.showMessageDialog(this, "Viaje actualizado correctamente!");
 
-            // formateamos los campos
             formatearCampos();
-
             cargarTabla();
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar los datos. \nError: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ingrese un precio numérico válido.");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -834,13 +819,16 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla() {
-        modelo.setRowCount(0);
+       modelo.setRowCount(0);
         ViajeData viajeData = new ViajeData();
         List<Viaje> viajes = viajeData.listarViajes();
 
         for (Viaje viaje : viajes) {
             Colectivo colectivo = viaje.getColectivo();
-            String cole = colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula();
+            String cole = (colectivo != null) 
+                ? colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula()
+                : "Sin colectivo asignado";
+                
             modelo.addRow(new Object[]{
                 viaje.getIdViaje(),
                 viaje.getOrigen(),

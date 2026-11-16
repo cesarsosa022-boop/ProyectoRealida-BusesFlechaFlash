@@ -560,7 +560,11 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
 
                 actualizarAsientosDisponibles();
                 String comboLug = "Asiento N° " + pasaje.getLugar().getNumeroAsiento() + " - ID: " + pasaje.getLugar().getIdLugar();
-                comboBoxLugar.addItem(comboLug);
+                
+                // Evita duplicar el asiento si el pasaje estaba dado de baja
+                if (((javax.swing.DefaultComboBoxModel<String>) comboBoxLugar.getModel()).getIndexOf(comboLug) == -1) {
+                    comboBoxLugar.addItem(comboLug);
+                }
                 comboBoxLugar.setSelectedItem(comboLug);
 
                 JBguardar.setEnabled(false);
