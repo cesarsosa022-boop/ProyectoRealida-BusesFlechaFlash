@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Viaje {
+
     private int idViaje;
     private String origen;
     private String destino;
@@ -103,10 +104,10 @@ public class Viaje {
 
     @Override
     public String toString() {
-        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + 
-               ", salida=" + fechaHoraSalida + ", llegada=" + fechaHoraLlegada + 
-               ", colectivo=" + (colectivo != null ? colectivo.getMatricula() : "N/A") + 
-               ", precio=" + precio + ", estado=" + estado + "}";
+        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino
+                + ", salida=" + fechaHoraSalida + ", llegada=" + fechaHoraLlegada
+                + ", colectivo=" + (colectivo != null ? colectivo.getMatricula() : "N/A")
+                + ", precio=" + precio + ", estado=" + estado + "}";
     }
 
     @Override
@@ -118,11 +119,14 @@ public class Viaje {
             return false;
         }
         final Viaje other = (Viaje) obj;
-        return Objects.equals(this.origen, other.origen) && Objects.equals(this.destino, other.destino);
+        return Objects.equals(this.origen, other.origen)
+                && Objects.equals(this.destino, other.destino)
+                && Objects.equals(this.fechaHoraSalida, other.fechaHoraSalida)
+                && Objects.equals(this.colectivo, other.colectivo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(origen, destino);
+        return Objects.hash(origen, destino, fechaHoraSalida, colectivo);
     }
 }

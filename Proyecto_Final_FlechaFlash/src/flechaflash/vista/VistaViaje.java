@@ -25,12 +25,13 @@ import javax.swing.table.TableColumn;
  * @author federico
  */
 public class VistaViaje extends javax.swing.JInternalFrame {
-    
-    private DefaultTableModel modelo = new DefaultTableModel(){
-        public boolean isCellEditable(int f, int c){
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
+
     /**
      * Creates new form VistaViaje
      */
@@ -495,21 +496,21 @@ public class VistaViaje extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int fila = (int) tableViaje.getSelectedRow();
-        
-        int opt = JOptionPane.showConfirmDialog(null,"¿Estás seguro de eliminar?","Confirmar", JOptionPane.YES_NO_OPTION);
-        
-        if(opt == JOptionPane.YES_OPTION){
+
+        int opt = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+
+        if (opt == JOptionPane.YES_OPTION) {
             ViajeData viajeData = new ViajeData();
             int idViaje = (int) tableViaje.getValueAt(fila, 0);
             viajeData.borrarViaje(idViaje);
-            
+
             JOptionPane.showMessageDialog(this, "Se borro el viaje correctamente.");
-            
+
             formatearCampos();
-            
+
             cargarTabla();
         } else {
-            return ;
+            return;
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -519,79 +520,79 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             String destino = txtDestino.getText().trim();
             String textoPrecio = txtPrecio.getText().trim();
             double precio = Double.parseDouble(textoPrecio);
-            
+
             // Comprobacion campo en blanco.
-            if(txtOrigen.getText().isEmpty()){
+            if (txtOrigen.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Origen' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
-            if(txtDestino.getText().isEmpty()){
+
+            if (txtDestino.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Destino' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
-            if(txtPrecio.getText().isEmpty()){
+
+            if (txtPrecio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Precio' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
+
             // Validaciones de campos bien escritos, si ha seleccionado un colectivo, y si el precio es acorde
-            if(!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")){
+            if (!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
                 JOptionPane.showMessageDialog(this, "Solo puede ingresar letras.");
-                return ;
+                return;
             }
-            
-            if(!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")){
+
+            if (!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
                 JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en estino.");
-                return ;
+                return;
             }
-            
-            if(comboBoxColectivo.getSelectedIndex() < 1){
+
+            if (comboBoxColectivo.getSelectedIndex() < 1) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un colectivo.");
-                return ;
+                return;
             }
-            
-            if(precio < 0){
+
+            if (precio < 0) {
                 JOptionPane.showMessageDialog(this, "El precio tiene que ser un número positivo.");
-                return ;
+                return;
             }
-            
+
             // Creamos los LocalDateTime combinando la fecha actual con las horas de los spinners
             LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
             LocalDateTime fechaHoraSalida = LocalDateTime.of(hoy, LocalTime.of(hhSalida, mmSalida));
-            
+
             int hhLlegada = (int) spHoraLlegada.getValue();
             int mmLlegada = (int) spMinLlegada.getValue();
             LocalDateTime fechaHoraLlegada = LocalDateTime.of(hoy, LocalTime.of(hhLlegada, mmLlegada));
-            
+
             int idColectivo = Integer.parseInt(comboBoxColectivo.getSelectedItem().toString().split(" - ")[0]);
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
-            
+
             // Pasamos todas las comprobaciones asi que ahora guardamos
             Viaje nuevoViaje = new Viaje(origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, true);
-            
+
             ViajeData viajeData = new ViajeData();
-            
+
             List<Viaje> lista = viajeData.listarViajes();
-            for(Viaje item: lista){
-                
-               if(nuevoViaje.equals(item)){
-                   JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
-                   return;
-               }
+            for (Viaje item : lista) {
+
+                if (nuevoViaje.equals(item)) {
+                    JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
+                    return;
+                }
             }
-            
+
             viajeData.guardarViaje(nuevoViaje);
-            
+
             JOptionPane.showMessageDialog(this, "Viaje cargado correctamente!");
-            
+
             // formateamos los campos
             formatearCampos();
-            
+
             cargarTabla();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos. \nError: " + e.getMessage());
@@ -607,26 +608,26 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private void tableViajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViajeMouseClicked
         formatearCampos();
         int fila = tableViaje.getSelectedRow();
-        
-        if(fila == -1){
+
+        if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione una fila correcta.");
             return;
         }
         btnGuardar.setEnabled(false);
         boolean activo = (boolean) tableViaje.getValueAt(fila, 7);
-        
-        if(activo){
-            if(btnAltaLogica.isEnabled()){
+
+        if (activo) {
+            if (btnAltaLogica.isEnabled()) {
                 btnAltaLogica.setEnabled(false);
             }
             btnBajaLogica.setEnabled(true);
         } else {
-            if(btnBajaLogica.isEnabled()){
+            if (btnBajaLogica.isEnabled()) {
                 btnBajaLogica.setEnabled(false);
             }
             btnAltaLogica.setEnabled(true);
         }
-        
+
         btnEliminar.setEnabled(true);
         btnEditar.setEnabled(true);
     }//GEN-LAST:event_tableViajeMouseClicked
@@ -634,16 +635,16 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private void btnBajaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaLogicaActionPerformed
         int fila = tableViaje.getSelectedRow();
         int idViaje = (int) tableViaje.getValueAt(fila, 0);
-        
+
         ViajeData viajeData = new ViajeData();
         viajeData.bajaLogicaViaje(idViaje);
-        
+
         JOptionPane.showMessageDialog(this, "Se dio de baja correctamente.");
-        
+
         btnBajaLogica.setEnabled(false);
-        
+
         cargarTabla();
-        
+
         // formateamos los campos
         formatearCampos();
     }//GEN-LAST:event_btnBajaLogicaActionPerformed
@@ -651,43 +652,43 @@ public class VistaViaje extends javax.swing.JInternalFrame {
     private void btnAltaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaLogicaActionPerformed
         int fila = tableViaje.getSelectedRow();
         int idViaje = (int) tableViaje.getValueAt(fila, 0);
-        
+
         ViajeData viajeData = new ViajeData();
         viajeData.altaLogicaViaje(idViaje);
-        
+
         JOptionPane.showMessageDialog(this, "Se dio de alta correctamente.");
-        
+
         btnAltaLogica.setEnabled(false);
-        
+
         cargarTabla();
-        
+
         // formateamos los campos
         formatearCampos();
     }//GEN-LAST:event_btnAltaLogicaActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       btnBajaLogica.setEnabled(false);
+        btnBajaLogica.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnEditar.setEnabled(false);
         btnAltaLogica.setEnabled(false);
         btnActualizar.setEnabled(true);
-        
+
         int fila = tableViaje.getSelectedRow();
         int idViaje = (int) tableViaje.getValueAt(fila, 0);
-        
+
         ViajeData viajeData = new ViajeData();
-        
+
         // primero completamos los datos en los campos trayendo el viaje desde la base de datos
         Viaje viaje = viajeData.buscarViaje(idViaje);
         Colectivo colectivo = viaje.getColectivo();
-        
+
         txtOrigen.setText(viaje.getOrigen());
         txtDestino.setText(viaje.getDestino());
         txtPrecio.setText(Double.toString(viaje.getPrecio()));
         String cadena = colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula();
         comboBoxColectivo.setSelectedItem(cadena);
-        
+
         spHoraSalida.setValue(viaje.getFechaHoraSalida().getHour());
         spMinSalida.setValue(viaje.getFechaHoraSalida().getMinute());
         spHoraLlegada.setValue(viaje.getFechaHoraLlegada().getHour());
@@ -698,111 +699,111 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         int fila = tableViaje.getSelectedRow();
         int idViaje = (int) tableViaje.getValueAt(fila, 0);
         boolean estado = (boolean) tableViaje.getValueAt(fila, 7);
-        
+
         try {
             String origen = txtOrigen.getText().trim();
             String destino = txtDestino.getText().trim();
             String textoPrecio = txtPrecio.getText().trim();
             double precio = Double.parseDouble(textoPrecio);
-            
+
             // Comprobacion campo en blanco.
-            if(txtOrigen.getText().isEmpty()){
+            if (txtOrigen.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Origen' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
-            if(txtDestino.getText().isEmpty()){
+
+            if (txtDestino.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Destino' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
-            if(txtPrecio.getText().isEmpty()){
+
+            if (txtPrecio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El campo 'Precio' no puede estar en blanco.");
-                return ;
+                return;
             }
-            
+
             // Validaciones de campos bien escritos, si ha seleccionado un colectivo, y si el precio es acorde
-            if(!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")){
+            if (!origen.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
                 JOptionPane.showMessageDialog(this, "Solo puede ingresar letras.");
-                return ;
+                return;
             }
-            
-            if(!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")){
+
+            if (!destino.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ , \\-]+")) {
                 JOptionPane.showMessageDialog(this, "Solo puede ingresar letras en estino.");
-                return ;
+                return;
             }
-            
-            if(comboBoxColectivo.getSelectedIndex() < 1){
+
+            if (comboBoxColectivo.getSelectedIndex() < 1) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un colectivo.");
-                return ;
+                return;
             }
-            
-            if(precio < 0){
+
+            if (precio < 0) {
                 JOptionPane.showMessageDialog(this, "El precio tiene que ser un número positivo.");
-                return ;
+                return;
             }
-            
+
             // Creamos los LocalDateTime para actualizar
             LocalDate hoy = LocalDate.now();
             int hhSalida = (int) spHoraSalida.getValue();
             int mmSalida = (int) spMinSalida.getValue();
             LocalDateTime fechaHoraSalida = LocalDateTime.of(hoy, LocalTime.of(hhSalida, mmSalida));
-            
+
             int hhLlegada = (int) spHoraLlegada.getValue();
             int mmLlegada = (int) spMinLlegada.getValue();
             LocalDateTime fechaHoraLlegada = LocalDateTime.of(hoy, LocalTime.of(hhLlegada, mmLlegada));
-            
+
             int idColectivo = Integer.parseInt(comboBoxColectivo.getSelectedItem().toString().split(" - ")[0]);
             ColectivoData colectivoData = new ColectivoData();
             Colectivo colectivo = colectivoData.buscarColectivo(idColectivo);
-            
+
             // Pasamos todas las comprobaciones asi que ahora actualizamos
             Viaje nuevoViaje = new Viaje(idViaje, origen, destino, fechaHoraSalida, fechaHoraLlegada, colectivo, precio, estado);
-            
+
             ViajeData viajeData = new ViajeData();
-            
+
             List<Viaje> lista = viajeData.listarViajes();
-            for(Viaje item: lista){
-                
-               if(nuevoViaje.equals(item)){
-                   JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
-                   return;
-               }
+            for (Viaje item : lista) {
+
+                if (item.getIdViaje() != nuevoViaje.getIdViaje() && nuevoViaje.equals(item)) {
+                    JOptionPane.showMessageDialog(this, "Este viaje ya existe.");
+                    return;
+                }
             }
-            
+
             viajeData.modificarViaje(nuevoViaje);
-            
+
             JOptionPane.showMessageDialog(this, "Viaje actualizado correctamente!");
-            
+
             // formateamos los campos
             formatearCampos();
-            
+
             cargarTabla();
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos. \nError: " + e.getMessage());
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void cargarCombo(){
+    private void cargarCombo() {
         comboBoxColectivo.removeAllItems();
-        
+
         comboBoxColectivo.addItem("Seleccione un colectivo");
-        
+
         ColectivoData colectivoData = new ColectivoData();
         List<Colectivo> colectivos = colectivoData.listarColectivos();
-        
-        for(Colectivo colectivo: colectivos){
-            if(colectivo.isEstado()){
+
+        for (Colectivo colectivo : colectivos) {
+            if (colectivo.isEstado()) {
                 String cadena = colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula();
-            
+
                 comboBoxColectivo.addItem(cadena);
             }
 
         }
     }
-    
-    private void formatearCampos(){
+
+    private void formatearCampos() {
         cargarCombo();
         txtOrigen.setText("");
         txtDestino.setText("");
@@ -818,8 +819,8 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         btnActualizar.setEnabled(false);
         btnGuardar.setEnabled(true);
     }
-    
-    private void cargarCabecera(){
+
+    private void cargarCabecera() {
         modelo.setColumnCount(0);
         modelo.addColumn("ID");
         modelo.addColumn("Origen");
@@ -831,13 +832,13 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         modelo.addColumn("Estado");
         tableViaje.setModel(modelo);
     }
-    
-    private void cargarTabla(){
+
+    private void cargarTabla() {
         modelo.setRowCount(0);
         ViajeData viajeData = new ViajeData();
         List<Viaje> viajes = viajeData.listarViajes();
-        
-        for(Viaje viaje: viajes){
+
+        for (Viaje viaje : viajes) {
             Colectivo colectivo = viaje.getColectivo();
             String cole = colectivo.getIdColectivo() + " - " + colectivo.getMarca() + " - " + colectivo.getModelo() + " - " + colectivo.getMatricula();
             modelo.addRow(new Object[]{
@@ -853,7 +854,7 @@ public class VistaViaje extends javax.swing.JInternalFrame {
         }
         ajustarColumnas();
     }
-    
+
     private void ajustarColumnas() {
         tableViaje.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         for (int col = 0; col < tableViaje.getColumnCount(); col++) {
@@ -874,35 +875,54 @@ public class VistaViaje extends javax.swing.JInternalFrame {
             columna.setPreferredWidth(ancho + 15); // margen
         }
     }
-    
+
     private void efectoBotones(java.awt.Container panel) {
         final java.awt.Color azul = new java.awt.Color(37, 99, 235);
         final java.awt.Color gris = new java.awt.Color(243, 244, 246);
 
         for (java.awt.Component c : panel.getComponents()) {
-            if (!(c instanceof javax.swing.JButton)) continue;
+            if (!(c instanceof javax.swing.JButton)) {
+                continue;
+            }
             javax.swing.JButton b = (javax.swing.JButton) c;
 
             final boolean principal = b.getBackground().equals(azul);
-            final java.awt.Color base       = b.getBackground();
-            final java.awt.Color hover      = principal ? new java.awt.Color(59, 130, 246) : new java.awt.Color(239, 246, 255);
-            final java.awt.Color presionado = principal ? new java.awt.Color(29, 78, 216)  : new java.awt.Color(219, 234, 254);
+            final java.awt.Color base = b.getBackground();
+            final java.awt.Color hover = principal ? new java.awt.Color(59, 130, 246) : new java.awt.Color(239, 246, 255);
+            final java.awt.Color presionado = principal ? new java.awt.Color(29, 78, 216) : new java.awt.Color(219, 234, 254);
             final javax.swing.border.Border bordeNormal = javax.swing.BorderFactory.createCompoundBorder(
                     b.getBorder(), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            final javax.swing.border.Border bordeHover  = javax.swing.BorderFactory.createLineBorder(azul, 2);
+            final javax.swing.border.Border bordeHover = javax.swing.BorderFactory.createLineBorder(azul, 2);
 
             b.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override public void mouseEntered(java.awt.event.MouseEvent e) {
-                    if (b.isEnabled()) { b.setBackground(hover); b.setBorder(bordeHover); }
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) {
+                        b.setBackground(hover);
+                        b.setBorder(bordeHover);
+                    }
                 }
-                @Override public void mouseExited(java.awt.event.MouseEvent e) {
-                    if (b.isEnabled()) { b.setBackground(base); b.setBorder(bordeNormal); }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) {
+                        b.setBackground(base);
+                        b.setBorder(bordeNormal);
+                    }
                 }
-                @Override public void mousePressed(java.awt.event.MouseEvent e) {
-                    if (b.isEnabled()) b.setBackground(presionado);
+
+                @Override
+                public void mousePressed(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) {
+                        b.setBackground(presionado);
+                    }
                 }
-                @Override public void mouseReleased(java.awt.event.MouseEvent e) {
-                    if (b.isEnabled()) b.setBackground(b.contains(e.getPoint()) ? hover : base);
+
+                @Override
+                public void mouseReleased(java.awt.event.MouseEvent e) {
+                    if (b.isEnabled()) {
+                        b.setBackground(b.contains(e.getPoint()) ? hover : base);
+                    }
                 }
             });
 
@@ -912,9 +932,11 @@ public class VistaViaje extends javax.swing.JInternalFrame {
                 b.setBackground(b.isEnabled() ? base : gris);
             });
 
-            if (!b.isEnabled()) b.setBackground(gris);
+            if (!b.isEnabled()) {
+                b.setBackground(gris);
+            }
         }
-    }   
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloViajes;
     private javax.swing.JButton btnActualizar;

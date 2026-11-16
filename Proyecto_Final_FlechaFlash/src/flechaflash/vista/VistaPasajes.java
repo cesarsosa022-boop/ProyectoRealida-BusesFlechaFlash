@@ -690,9 +690,43 @@ public class VistaPasajes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JBmodificarActionPerformed
 
     private void JBlistarPasajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistarPasajesActionPerformed
-        limpiarTexto();
         cargarCabecera();
-        cargarTabla();
+        
+        // Si hay un viaje seleccionado en el combo, filtramos por ese viaje
+        if (comboBoxViaje.getSelectedIndex() > 0) {
+            try {
+                String selectedViaje = comboBoxViaje.getSelectedItem().toString();
+                int idViaje = Integer.parseInt(selectedViaje.split(" - ")[0]);
+                
+                modelo.setRowCount(0);
+                PasajeData pasajeData = new PasajeData();
+                List<Pasaje> pasajesFiltrados = pasajeData.listarPasajesPorViaje(idViaje);
+                
+                for (Pasaje p : pasajesFiltrados) {
+                    String nomPasajero = p.getPasajero().getNombre() + " " + p.getPasajero().getApellido();
+                    String rutaViaje = p.getViaje().getOrigen() + " -> " + p.getViaje().getDestino();
+
+                    modelo.addRow(new Object[]{
+                        p.getIdPasaje(),
+                        nomPasajero,
+                        rutaViaje,
+                        "N° " + p.getLugar().getNumeroAsiento(),
+                        p.getFechaVenta(),
+                        p.getHoraVenta(),
+                        "$" + p.getPrecio(),
+                        p.isEstado()
+                    });
+                }
+                ajustarColumnas();
+                JOptionPane.showMessageDialog(this, "Mostrando pasajes vendidos para el viaje seleccionado (" + pasajesFiltrados.size() + " encontrados).");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al filtrar pasajes: " + e.getMessage());
+            }
+        } else {
+            // Si no hay viaje seleccionado, lista absolutamente todos
+            limpiarTexto();
+            cargarTabla();
+        }
     }//GEN-LAST:event_JBlistarPasajesActionPerformed
 
     private void JBbajaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbajaLogicaActionPerformed

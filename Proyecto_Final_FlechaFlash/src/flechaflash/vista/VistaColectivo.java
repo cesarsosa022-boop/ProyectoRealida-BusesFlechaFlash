@@ -547,6 +547,8 @@ public class VistaColectivo extends javax.swing.JInternalFrame {
             }
             Colectivo nuevoColectivo = new Colectivo(matricula, marca, modeloBus, capacidad, chofer, estado);
             colectivoData.guardarColectivo(nuevoColectivo);
+            flechaflash.persistencia.LugarData lugarData = new flechaflash.persistencia.LugarData();
+            lugarData.generarLugaresParaColectivo(nuevoColectivo);
 
             JOptionPane.showMessageDialog(this, "Colectivo guardado correctamente. Asientos generados.");
             formatearCampos();
