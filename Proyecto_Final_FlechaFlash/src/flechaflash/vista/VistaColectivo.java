@@ -547,6 +547,10 @@ public class VistaColectivo extends javax.swing.JInternalFrame {
             }
             Colectivo nuevoColectivo = new Colectivo(matricula, marca, modeloBus, capacidad, chofer, estado);
             colectivoData.guardarColectivo(nuevoColectivo);
+            if(nuevoColectivo.getIdColectivo()==0){
+                JOptionPane.showMessageDialog(this, "No se pudo guardar el colectivo. Verifique que la matricula no este repetida","Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             flechaflash.persistencia.LugarData lugarData = new flechaflash.persistencia.LugarData();
             lugarData.generarLugaresParaColectivo(nuevoColectivo);
 
@@ -607,6 +611,9 @@ public class VistaColectivo extends javax.swing.JInternalFrame {
                 
                 int id= Integer.parseInt(jtfIDColectivo.getText().trim());
                 colectivoData.borrarColectivo(id);
+                if (colectivoData.buscarColectivo(id) != null){
+                    JOptionPane.showMessageDialog(this,"No se puede eliminar:El colectivo tiene viajes asociados. Use la baja logica","Error",JOptionPane.ERROR_MESSAGE);
+                }
                 JOptionPane.showMessageDialog(this, "Colectivo eliminado fisicamente de la base de datos.");
                 formatearCampos();
                 cargarTabla();
@@ -652,7 +659,13 @@ public class VistaColectivo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Los campos no pueden quedar en blanco.");
                 return;
             }
-
+            Colectivo original = colectivoData.buscarColectivo(id);
+            if (original != null && original.getCapacidad() != capacidad){
+                JOptionPane.showMessageDialog(this, "No se puede cambiar la capacidad de un colectivo ya creado: Los asientos ya fueron generados.");
+                jsCapacidadAsientos.setValue(original.getCapacidad());
+                return;
+            }
+            
 
             Colectivo colectivoMod = new Colectivo(id, matricula, marca, modeloBus, capacidad, chofer, estado);
             colectivoData.modificarColectivo(colectivoMod);
