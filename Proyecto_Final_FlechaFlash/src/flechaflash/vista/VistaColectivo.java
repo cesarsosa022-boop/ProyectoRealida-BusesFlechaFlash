@@ -613,6 +613,7 @@ public class VistaColectivo extends javax.swing.JInternalFrame {
                 colectivoData.borrarColectivo(id);
                 if (colectivoData.buscarColectivo(id) != null){
                     JOptionPane.showMessageDialog(this,"No se puede eliminar:El colectivo tiene viajes asociados. Use la baja logica","Error",JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
                 JOptionPane.showMessageDialog(this, "Colectivo eliminado fisicamente de la base de datos.");
                 formatearCampos();
