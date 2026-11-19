@@ -403,27 +403,20 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
         try {
-        String dni = jTFdni.getText().trim();
-        String nombre = jTFnombre.getText().trim();
-        String apellido = jTFapellido.getText().trim();
-        String correo = jTFcorreo.getText().trim();
-        String telefono = jTFtelefono.getText().trim();
+        String dni = jTFdni.getText();
+        String nombre = jTFnombre.getText();
+        String apellido = jTFapellido.getText();
+        String correo = jTFcorreo.getText();
+        String telefono = jTFtelefono.getText();
         boolean estado = jCBestado.isSelected();
 
-        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty()||correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Complete DNI, Nombre, Apellido y Correo.");
+        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete DNI, Nombre y Apellido.");
             return;
-        }//El siguiente if es para evitar que pongan cualqueir cosa en el correo
-        if(!correo.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")){
-            JOptionPane.showMessageDialog(this,"Ingrese un correo valido.");
         }
 
         Pasajero pasajero = new Pasajero(dni, nombre, apellido, correo, telefono, estado);
         pasajeroData.guardarPasajero(pasajero);
-        
-        if(pasajero.getIdPasajero()==0){
-            JOptionPane.showMessageDialog(this, "No se pudo guardar : El DNI o correo ya estan registrados");
-        }
         
         JOptionPane.showMessageDialog(this, "Pasajero guardado correctamente");
         limpiarTexto();
@@ -435,40 +428,18 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
 
     private void JBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarActionPerformed
         try {
-        int id = Integer.parseInt(jTFid.getText().trim());
-        String dni = jTFdni.getText().trim();
-        String nombre = jTFnombre.getText().trim();
-        String apellido = jTFapellido.getText().trim();
-        String correo = jTFcorreo.getText().trim();
-        String telefono = jTFtelefono.getText().trim();
+        int id = Integer.parseInt(jTFid.getText());
+        String dni = jTFdni.getText();
+        String nombre = jTFnombre.getText();
+        String apellido = jTFapellido.getText();
+        String correo = jTFcorreo.getText();
+        String telefono = jTFtelefono.getText();
         boolean estado = jCBestado.isSelected();
-        
-        if(pasajeroData.buscarPasajero(id)== null){
-            JOptionPane.showMessageDialog(this, "No existe ningun pasajero con ese ID.");
-            return;
-        }
-        if(dni.isEmpty()||nombre.isEmpty()||apellido.isEmpty()||correo.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Complete DNI,Nombre,Apellido y Correo");
-            return;
-        }
-        if (!correo.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
-        JOptionPane.showMessageDialog(this, "Ingrese un correo valido.");
-        return;
-        }
-        
+
         Pasajero pasajero = new Pasajero(id, dni, nombre, apellido, correo, telefono, estado);
         pasajeroData.modificarPasajero(pasajero);
         
-        Pasajero guardado= pasajeroData.buscarPasajero(id);
-        boolean seGuarda= guardado != null && guardado.getDni().equals(dni) && guardado.getCorreo().equals(correo) 
-                && guardado.getNombre().equals(nombre)&& guardado.getApellido().equals(apellido);
-        
-        if (!seGuarda){
-            JOptionPane.showMessageDialog(this, "No se pudo modificar: El DNI o el correo ya pertenecen a otro pasajero");
-            return;
-        }
-        
-        JOptionPane.showMessageDialog(this, "Pasajero modificado correctamente.");
+        JOptionPane.showMessageDialog(this, "Pasajero modificado correctamente");
         limpiarTexto();
         
     } catch (NumberFormatException e) {
@@ -485,10 +456,6 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar físicamente este pasajero?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 pasajeroData.borrarPasajero(id);
-                if(pasajeroData.buscarPasajero(id) != null){
-                    JOptionPane.showMessageDialog(this, "No se pudo eliminar: El pasajero tiene pasajes asociados.Use la baja logica");
-                    return;
-                }
                 JOptionPane.showMessageDialog(this, "Pasajero borrado físicamente de la base de datos.");
                 limpiarTexto();
             }
