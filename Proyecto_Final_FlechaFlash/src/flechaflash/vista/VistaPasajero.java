@@ -416,7 +416,6 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         }//El siguiente if es para evitar que pongan cualqueir cosa en el correo
         if(!correo.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")){
             JOptionPane.showMessageDialog(this,"Ingrese un correo valido.");
-            return;
         }
 
         Pasajero pasajero = new Pasajero(dni, nombre, apellido, correo, telefono, estado);
@@ -424,7 +423,6 @@ public class VistaPasajero extends javax.swing.JInternalFrame {
         
         if(pasajero.getIdPasajero()==0){
             JOptionPane.showMessageDialog(this, "No se pudo guardar : El DNI o correo ya estan registrados");
-            return;
         }
         
         JOptionPane.showMessageDialog(this, "Pasajero guardado correctamente");
